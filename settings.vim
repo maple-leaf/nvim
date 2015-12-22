@@ -78,6 +78,13 @@ set ttimeoutlen=100
 let g:netrw_liststyle=3
 let g:netrw_winsize=30
 
+" paste mode
+:map <F10> :set paste<CR>
+:map <F9> :set nopaste<CR>
+:imap <F10> <C-O>:set paste<CR>
+:imap <F9> <nop>
+:set pastetoggle=<F9>
+
 augroup MyAutoCommands
     " Clear old autocmds in group
     autocmd!
