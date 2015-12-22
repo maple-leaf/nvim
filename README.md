@@ -1,6 +1,6 @@
 # nvim配置文件
 
-##关于neovim的安装与配置
+##关于neovim的安装
  - [installing neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 ##关于neovim的配置
