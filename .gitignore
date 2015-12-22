@@ -5,3 +5,4 @@ plugged
 sessions
 log
 .init.vim-rplugin~
+.netrwhist
