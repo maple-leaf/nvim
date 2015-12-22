@@ -10,7 +10,10 @@
     export XDG_DATA_HOME="$HOME/.config"
     ```
 
- - 接下来可以执行clone该repo到 `.config` 目录下, `git clone https://github.com/maple-leaf/nvim.git ~/.config/nvim`
+ - 接下来可以执行clone该repo到 `.config` 目录下
+   
+   `git clone https://github.com/maple-leaf/nvim.git ~/.config/nvim`
+
  - 安装插件管理器[vim-plug](https://github.com/junegunn/vim-plug#user-content-installation)
     
     ```
