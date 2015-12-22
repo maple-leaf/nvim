@@ -1,6 +1,6 @@
 # nvim配置文件
 
-##关于neovim的安装
+##关于neovim的安装与配置
  - [installing neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 ##关于neovim的配置
  - 配置文件位置使基于 `$XDG_DATA_HOME` 这个shell环境变量，默认是在 `~/.config/`。下面是我相关的 `.zshrc`
