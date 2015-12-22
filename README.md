@@ -20,7 +20,7 @@
     curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ```
     
- - 从terminal中启动`nvim`, 然后输入 `:PlugInstall`, 将安装以下插件(共30个):
+ - 从terminal中启动`nvim`, 然后输入 `:PlugInstall`, 将安装以下插件(共30个,均可在github中搜索到):
     * ctrlp.vim
     * ctrlp_bdelete.vim
     * vim-airline
