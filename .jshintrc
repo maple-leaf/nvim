@@ -1,0 +1,3 @@
+{
+    "-W027": false //disable 'unreachable "return" after...'
+}

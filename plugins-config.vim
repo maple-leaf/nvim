@@ -6,7 +6,7 @@ function! NeomakeConfig()
     nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
     let g:neomake_javascript_jshint_maker = {
-                \ 'args': ['--verbose'],
+                \ 'args': ['--verbose', '--config=$XDG_DATA_HOME/nvim/.jshintrc'],
                 \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
                 \ }
     let g:neomake_javascript_enabled_makers = ['jshint']
