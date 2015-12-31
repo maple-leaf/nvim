@@ -119,3 +119,4 @@ augroup END
 
 " reload nvim config
 command! Reload :source ~/.config/nvim/init.vim
+command! Rsync :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" . hlg:/service/develop/fengye/zsadmin/view/
