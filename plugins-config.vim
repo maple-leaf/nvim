@@ -18,9 +18,15 @@ let g:deoplete#enable_at_startup = 1
 
 function! CtrlpConfig()
     let g:ctrlp_working_path_mode = 'rw'
-    " use PageUp and PageDown more often than \<C-f\> and \<C-B\>
     nnoremap <silent> <C-b> :CtrlPBuffer<CR>
-    nnoremap <silent> <C-m> :CtrlPMRU<CR>
+    function! MapCr()
+        if &buftype ==# "quickfix"
+            execute "normal! \<CR>"
+        else
+            :CtrlPMRUFiles<cr>
+        endif
+    endfunction
+    nnoremap <silent> <C-m> :call MapCr()<cr>
     let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:50'
     let g:ctrlp_use_caching = 1
     let g:ctrlp_clear_cache_on_exit = 0

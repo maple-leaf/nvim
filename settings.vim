@@ -117,4 +117,5 @@ augroup MyAutoCommands
     set completeopt-=preview
 augroup END
 
+" reload nvim config
 command! Reload :source ~/.config/nvim/init.vim
