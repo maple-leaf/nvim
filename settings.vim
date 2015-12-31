@@ -28,7 +28,6 @@ set fdm=syntax                  " set fold method
 set relativenumber
 
 " language and encoding stuff
-let $LANG ="en"
 set helplang="en,zh-cn"
 set fileencodings=utf-8,chinese,latin-1
 set fileformat=unix
