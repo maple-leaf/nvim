@@ -1,6 +1,6 @@
 function! NeomakeConfig()
     autocmd! BufWritePost * Neomake
-    let g:neomake_open_list = 1
+    let g:neomake_open_list = 0
     let g:neomake_list_height = 5
     nmap <Leader><Space>n :lnext<CR>      " next error/warning
     nmap <Leader><Space>p :lprev<CR>      " previous error/warning

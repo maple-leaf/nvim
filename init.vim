@@ -5,6 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " add or remove your bundles here:
 source $XDG_DATA_HOME/nvim/plugins.vim
+source $XDG_DATA_HOME/nvim/nyao-config.vim
 
 " Add plugins to &runtimepath
 call plug#end()

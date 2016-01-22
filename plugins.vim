@@ -24,6 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdcommenter'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
@@ -62,5 +63,7 @@ function! FrontEndSupport()
     Plug 'moll/vim-node', {
                 \   'for': ['javascript']
                 \ }
+    " vue component syntax
+    Plug 'posva/vim-vue'
 endfunction
 call FrontEndSupport()
