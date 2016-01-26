@@ -25,6 +25,7 @@ Plug 'aperezdc/vim-template'
 Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
+Plug 'kassio/neoterm'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
