@@ -6,15 +6,18 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips
 Plug 'benekastah/neomake'
 " if encounter `failed to load python host`, see https://github.com/Shougo/deoplete.nvim/issues/31
 Plug 'Shougo/deoplete.nvim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'd11wtq/ctrlp_bdelete.vim'
-"Plug 'scrooloose/nerdtree'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+"Plug 'Shougo/unite.vim'
+"Plug 'Shougo/neomru.vim'
+"Plug 'Shougo/vimproc.vim', {'do': 'make'}
+
 " vim sessions
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'danro/rename.vim'
 " Search results counter
-Plug 'IndexedSearch'
 Plug 'IndexedSearch'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
 Plug 'VisIncr'
@@ -25,7 +28,9 @@ Plug 'aperezdc/vim-template'
 Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
@@ -64,7 +69,9 @@ function! FrontEndSupport()
     Plug 'moll/vim-node', {
                 \   'for': ['javascript']
                 \ }
-    " vue component syntax
-    Plug 'posva/vim-vue'
+    Plug 'trotzig/import-js', {
+                \ 'for': ['javascript']
+                \}
+    Plug 'ludovicchabant/vim-gutentags'
 endfunction
 call FrontEndSupport()

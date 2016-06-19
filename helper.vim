@@ -20,7 +20,7 @@ function! EnsureDirExists (dir)
     endif
 endfunction
 
-" Strip whitespace 
+" Strip whitespace
 function! StripTrailingWhitespace()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -36,3 +36,39 @@ endfunction
 function! Rsync()
     !rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" . hlg:/service/develop/fengye/zsadmin/view/
 endfunction
+
+"===============================================================================
+" Author: JarrodCTaylor
+" Source: https://github.com/JarrodCTaylor/dotfiles/blob/master/vim/functions/delete-regex-buffers.vim
+" DESCRIPTION:   Delete buffers from buffer list matching regex
+" EXAMPLE USAGE: Assuming we have [text1.md, text2.md, text3.md] buffers open.
+"                We can delete buffers text2.md and text3.md like so
+"                `:BD 2\|3`
+"                There are delete because the regex `2\|3` matches the desired
+"                buffer names
+"===============================================================================
+function! DeleteMatchingBuffers(pattern)
+    let l:bufferList = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
+    if len(l:matchingBuffers) < 1
+        echo 'No buffers found matching pattern ' . a:pattern
+        return
+    endif
+    exec 'bd ' . join(l:matchingBuffers, ' ')
+endfunction
+
+command! -nargs=1 BD call DeleteMatchingBuffers('<args>')
+
+function! FormatJSON(...)
+  let code="\"
+        \ var i = process.stdin, d = '';
+        \ i.resume();
+        \ i.setEncoding('utf8');
+        \ i.on('data', function(data) { d += data; });
+        \ i.on('end', function() {
+        \     console.log(JSON.stringify(JSON.parse(d), null, 
+        \ " . (a:0 ? a:1 ? a:1 : 2 : 2) . "));
+        \ });\""
+  execute "%! node -e " . code 
+endfunction
+nmap ,fj :<C-U>call FormatJSON(v:count)<CR>

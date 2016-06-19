@@ -2,28 +2,51 @@ function! NeomakeConfig()
     autocmd! BufWritePost * Neomake
     let g:neomake_open_list = 0
     let g:neomake_list_height = 5
-    nmap <Leader><Space>n :lnext<CR>      " next error/warning
-    nmap <Leader><Space>p :lprev<CR>      " previous error/warning
+    nmap <Leader>en :lnext<CR>      " next error/warning
+    nmap <Leader>ep :lprev<CR>      " previous error/warning
 
-    let g:neomake_javascript_jshint_maker = {
-                \ 'args': ['--verbose', '--config=$XDG_DATA_HOME/nvim/.jshintrc'],
-                \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-                \ }
-    let g:neomake_javascript_enabled_makers = ['jshint']
+    "let g:neomake_javascript_jshint_maker = {
+                "\ 'args': ['--verbose', '--config=$XDG_DATA_HOME/nvim/.jshintrc'],
+                "\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+                "\ }
+    "let g:neomake_javascript_enabled_makers = ['jshint']
+    let g:neomake_javascript_enabled_makers = ['eslint']
+
+    function! NeomakeESlintChecker()
+        "  configure b:syntastic_javascript_eslint_exec to point to the
+        "  locally installed version of eslint if it exists otherwise fallback to the globally installed
+        "  https://github.com/benekastah/neomake/issues/247#issuecomment-175808155
+        " https://github.com/airbnb/javascript/issues/465#issuecomment-173281502
+        let l:npm_bin = ''
+        "let l:eslint = 'eslint'
+        let l:eslint = 'eslint_d' " https://github.com/mantoni/eslint_d.js make eslint faster
+
+        if executable('npm')
+            let l:npm_bin = split(system('npm bin'), '\n')[0]
+        endif
+
+        if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint_d')
+            let l:eslint = l:npm_bin . '/eslint_d'
+        endif
+
+        let b:neomake_javascript_eslint_exe = l:eslint
 endfunction
 call NeomakeConfig()
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
+function! DeopleteConfig()
+    let g:deoplete#enable_at_startup = 1
+endfunction
+call DeopleteConfig()
 
 function! CtrlpConfig()
     let g:ctrlp_working_path_mode = 'rw'
-    nnoremap <silent> <C-b> :CtrlPBuffer<CR>
+    "nnoremap <silent> <C-b> :CtrlPBuffer<CR>
     function! MapCr()
         if &buftype ==# "quickfix"
             execute "normal! \<CR>"
         else
-            :CtrlPMRUFiles<cr>
+            ":CtrlPMRUFiles<cr>
+            :CtrlPBuffer
         endif
     endfunction
     nnoremap <silent> <C-m> :call MapCr()<cr>
@@ -54,9 +77,43 @@ function! CtrlpConfig()
                     \ 'fallback': 'find %s -type f'
                     \ }
     endif
+    call ctrlp_bdelete#init()
 endfunction
-call CtrlpConfig()
-call ctrlp_bdelete#init()
+"call CtrlpConfig()
+
+function! FZFConfig()
+    no <leader>p :FZF<cr>
+endfunction
+call FZFConfig()
+
+" Unite
+function! UniteConfig()
+    " Set up some custom ignores
+    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+                \ 'ignore_pattern', join([
+                \ '\.git/',
+                \ 'node_modules/',
+                \ ], '\|'))
+
+    "if executable('ag')
+        "let g:unite_source_rec_async_command= 'ag --follow --nocolor --nogroup --hidden -g ""'
+        "let g:unite_source_grep_command = 'ag'
+        "let g:unite_source_grep_default_opts = '--column --nogroup --nogroup'
+        "let g:unite_source_grep_recursive_opt = ''
+    "endif
+
+    let g:unite_source_rec_max_cache_files = 99999
+
+    let g:unite_source_history_yank_enable = 1
+    call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    nnoremap <C-p> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
+    nnoremap <C-i> :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
+    "nnoremap <C-m> :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru:!<cr>
+    nnoremap <C-o> :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
+    nnoremap <C-h> :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+    nnoremap <C-m> :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
+endfunction
+"call UniteConfig()
 
 " Session
 function! SessionConfig()
@@ -111,4 +168,28 @@ function! NeoTermConfig()
     " Git commands
     command! -nargs=+ Tg :T git <args>
 endfunction
-call NeoTermConfig()
+"call NeoTermConfig()
+
+function! AirlineConfig()
+    let g:airline_theme='powerlineish'
+    if !exists('g:airline_symbols')
+        let g:airline_symbols = {}
+    endif
+    let g:airline_symbols.branch=''
+    let g:airline#extensions#default#section_truncate_width = {
+                \ 'a': 80,
+                \ 'x': 80,
+                \ 'y': 80,
+                \ 'z': 80,
+                \ }
+    let g:airline#extensions#branch#enabled = 1
+endfunction
+call AirlineConfig()
+
+function! FugittiveConfig()
+  nmap <Leader>gs <Plug>GitGutterStageHunk
+  nmap <Leader>gr <Plug>GitGutterRevertHunk
+  nmap <Leader>gp <Plug>GitGutterPreviewHunk
+  nmap <Leader>gn <Plug>GitGutterNextHunk
+endfunction
+call FugittiveConfig()

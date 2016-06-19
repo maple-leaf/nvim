@@ -94,7 +94,7 @@ augroup MyAutoCommands
     autocmd BufRead,BufNewFile *.liquid,*.mustache setfiletype liquid
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-    autocmd BufNewFile,BufRead *.hbs,*.phtml set filetype=html
+    autocmd BufNewFile,BufRead *.hbs,*.phtml,*.vue set filetype=html
 
     " Ruby files
     autocmd FileType ruby,eruby, imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
@@ -111,7 +111,7 @@ augroup MyAutoCommands
     " Remove trailing whitespaces and ^M chars
     autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,html autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
-    autocmd FileType html,xml,xhtml,css,sass,scss,less set fdm=indent | set fdl=3
+    autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
 
     " disable scratch preview window when select completion
     set completeopt-=preview
@@ -123,4 +123,21 @@ command! Reload :source ~/.config/nvim/init.vim
 " terminal
 tnoremap <Esc> <C-\><C-n>
 
-command! Rsync :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" . hlg:/service/develop/fengye/zsadmin/view/
+function! RsyncToDev(pattern)
+    let l:bufferList = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
+    if a:pattern == 'zs'
+        echo 'Rsyncing ' . a:pattern
+        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/zsadmin/view/
+    elseif a:pattern == 'hyaf'
+        echo 'Rsyncing ' . a:pattern
+        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/
+    elseif a:pattern == 'hyafeditor'
+        echo 'Rsyncing ' . a:pattern
+        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/wireless
+    else
+        echo 'Wrong target!!!!'
+    endif
+endfunction
+
+command! -nargs=1 Rsync call RsyncToDev('<args>')
