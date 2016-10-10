@@ -30,6 +30,7 @@ function! NeomakeConfig()
         endif
 
         let b:neomake_javascript_eslint_exe = l:eslint
+    endfunction
 endfunction
 call NeomakeConfig()
 
