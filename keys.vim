@@ -109,9 +109,9 @@ nno ;; <ESC>
 
 " filename completion
 ino <c-j> <c-x><c-f>
-" Map <Leader>ff to display all lines with keyword under cursor
+" display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " some mappings for copying the file name to the clipboard. 
 " Convert slashes to backslashes for Windows.
@@ -137,7 +137,10 @@ nmap q: <Nop>     "avoid annoying cmdline window
 " write as root!
 cmap w!! w !sudo tee > /dev/null %
 
-no <Leader>n :b#<cr>
+no <Leader><tab> :b#<cr>
 
 " netrw
 no <Leader>e :Lexplore<cr>
+
+" ag search
+no <Leader>/ :Ag! 
