@@ -197,6 +197,10 @@ function! AirlineConfig()
                 \ 'z': 80,
                 \ }
     let g:airline#extensions#branch#enabled = 1
+
+    let g:airline#extensions#tabline#enabled = 1
+    " enable/disable displaying buffers with a single tab.
+    let g:airline#extensions#tabline#show_buffers = 1
 endfunction
 call AirlineConfig()
 
