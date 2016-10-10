@@ -132,3 +132,10 @@ no <Leader><tab> :b#<cr>
 
 " netrw
 no <Leader>e :Lexplore<cr>
+
+" copy from and paste to clipboard
+no <Leader>[ "*y
+vno <Leader>[ "*y
+imap <c-v> <c-r>*
+no <Leader>] "*p
+vno <Leader>] "*p
