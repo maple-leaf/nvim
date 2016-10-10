@@ -59,14 +59,6 @@ function! MapWindowCtrl()
     noremap <silent> <leader>wl :wincmd l<cr>
     " Close the current window
     noremap <silent> <leader>wc :close<cr>
-    " Close the window below this one
-    noremap <silent> <leader>wcj :wincmd j<cr>:close<cr>
-    " Close the window above this one
-    noremap <silent> <leader>wck :wincmd k<cr>:close<cr>
-    " Close the window to the left of this one
-    noremap <silent> <leader>wch :wincmd h<cr>:close<cr>
-    " Close the window to the right of this one
-    noremap <silent> <leader>wcl :wincmd l<cr>:close<cr>
     " Maximum the current window
     noremap <silent> <leader>wo :only<cr>
     " balance all windows 
@@ -141,6 +133,3 @@ no <Leader><tab> :b#<cr>
 
 " netrw
 no <Leader>e :Lexplore<cr>
-
-" ag search
-no <Leader>/ :Ag! 
