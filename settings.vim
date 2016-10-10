@@ -27,6 +27,8 @@ set fdm=syntax                  " set fold method
 
 set relativenumber
 
+set autochdir " Automatically change the current directory
+
 " language and encoding stuff
 set helplang="en,zh-cn"
 set fileencodings=utf-8,chinese,latin-1
