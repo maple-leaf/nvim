@@ -81,8 +81,22 @@ function! CtrlpConfig()
 endfunction
 "call CtrlpConfig()
 
+function! s:find_root()
+  for vcs in ['.git', '.svn', '.hg']
+    let dir = finddir(vcs.'/..', ';')
+    if !empty(dir)
+      execute 'FZF' dir
+      return
+    endif
+  endfor
+  FZF
+endfunction
+
+command! FZFR call s:find_root()
 function! FZFConfig()
-    no <leader>p :FZF<cr>
+    no <leader>pf :GitFiles<cr>
+    no <leader>ff :FZFR<cr>
+    no <leader><cr> :Buffer<cr>
 endfunction
 call FZFConfig()
 
