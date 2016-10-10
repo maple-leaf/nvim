@@ -50,35 +50,35 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 function! MapWindowCtrl()
     " Move the cursor to the window left of the current one
-    noremap <silent> <leader>h :wincmd h<cr>
+    noremap <silent> <leader>wh :wincmd h<cr>
     " Move the cursor to the window below the current one
-    noremap <silent> <leader>j :wincmd j<cr>
+    noremap <silent> <leader>wj :wincmd j<cr>
     " Move the cursor to the window above the current one
-    noremap <silent> <leader>k :wincmd k<cr>
+    noremap <silent> <leader>wk :wincmd k<cr>
     " Move the cursor to the window right of the current one
-    noremap <silent> <leader>l :wincmd l<cr>
+    noremap <silent> <leader>wl :wincmd l<cr>
     " Close the current window
-    noremap <silent> <leader>C :close<cr>
+    noremap <silent> <leader>wc :close<cr>
     " Close the window below this one
-    noremap <silent> <leader>Cj :wincmd j<cr>:close<cr>
+    noremap <silent> <leader>wcj :wincmd j<cr>:close<cr>
     " Close the window above this one
-    noremap <silent> <leader>Ck :wincmd k<cr>:close<cr>
+    noremap <silent> <leader>wck :wincmd k<cr>:close<cr>
     " Close the window to the left of this one
-    noremap <silent> <leader>Ch :wincmd h<cr>:close<cr>
+    noremap <silent> <leader>wch :wincmd h<cr>:close<cr>
     " Close the window to the right of this one
-    noremap <silent> <leader>Cl :wincmd l<cr>:close<cr>
+    noremap <silent> <leader>wcl :wincmd l<cr>:close<cr>
     " Maximum the current window
-    noremap <silent> <leader>M :wincmd <C-_><cr>
+    noremap <silent> <leader>wo :only<cr>
     " balance all windows 
-    noremap <silent> <leader>B :wincmd <C-=><cr>
+    noremap <silent> <leader>wb :wincmd <C-=><cr>
     " Move the current window to the right of the main Vim window
-    noremap <silent> <leader>ml <C-W>L
+    noremap <silent> <leader>wL <C-W>L
     " Move the current window to the top of the main Vim window
-    noremap <silent> <leader>mk <C-W>K
+    noremap <silent> <leader>wK <C-W>K
     " Move the current window to the left of the main Vim window
-    noremap <silent> <leader>mh <C-W>H
+    noremap <silent> <leader>wH <C-W>H
     " Move the current window to the bottom of the main Vim window
-    noremap <silent> <leader>mj <C-W>J
+    noremap <silent> <leader>wJ <C-W>J
     " Adjust viewports to the same size
     map <Leader>= <C-w>=
 endfunction
