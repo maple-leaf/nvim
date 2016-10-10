@@ -32,7 +32,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'kassio/neoterm'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-scripts/vimagit'
+Plug 'jreybert/vimagit'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
