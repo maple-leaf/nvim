@@ -30,9 +30,15 @@ Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'kassio/neoterm'
+
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
+
+Plug 'tpope/vim-repeat'
+
+" generate tags
+Plug 'ludovicchabant/vim-gutentags'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
@@ -74,6 +80,5 @@ function! FrontEndSupport()
     Plug 'trotzig/import-js', {
                 \ 'for': ['javascript']
                 \}
-    Plug 'ludovicchabant/vim-gutentags'
 endfunction
 call FrontEndSupport()
