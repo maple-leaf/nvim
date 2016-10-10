@@ -212,3 +212,9 @@ function! FugittiveConfig()
   nmap <Leader>gn <Plug>GitGutterNextHunk
 endfunction
 call FugittiveConfig()
+
+function! VimGrepperConfig()
+    " ag search
+    no <Leader>/ :GrepperAg 
+endfunction
+call VimGrepperConfig()

@@ -22,7 +22,8 @@ Plug 'IndexedSearch'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
 Plug 'VisIncr'
 " grep tool
-Plug 'rking/ag.vim'
+Plug 'mhinz/vim-grepper'
+
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'maple-leaf/my-vim-templates'
