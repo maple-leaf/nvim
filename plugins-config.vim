@@ -34,10 +34,12 @@ function! NeomakeConfig()
 endfunction
 call NeomakeConfig()
 
-function! DeopleteConfig()
-    let g:deoplete#enable_at_startup = 1
+function! AleConfig()
+    let g:ale_linters = {
+                \   'javascript': ['eslint'],
+                \}
 endfunction
-call DeopleteConfig()
+"call AleConfig()
 
 function! CtrlpConfig()
     let g:ctrlp_working_path_mode = 'rw'
@@ -56,12 +58,12 @@ function! CtrlpConfig()
     let g:ctrlp_clear_cache_on_exit = 0
     let g:ctrlp_show_hidden = 0
     let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
-                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.scssc$' }
+                \ 'dir':  '\.git$\\.hg$\\.svn$\\.sass-cache$',
+                \ 'file': '\.exe$\\.so$\\.dll$\\.pyc$\\.scssc$' }
     let g:ctrlp_mruf_relative = 1   " only MRU files in the current working directory
 
     " On Windows use 'dir' as fallback command.
-    if has('win32') || has('win64')
+    if has('win32')  has('win64')
         let g:ctrlp_user_command = {
                     \ 'types': {
                     \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
@@ -86,14 +88,22 @@ function! s:find_root()
   for vcs in ['.git', '.svn', '.hg']
     let dir = finddir(vcs.'/..', ';')
     if !empty(dir)
-      execute 'FZF' dir
-      return
+      return dir
     endif
   endfor
-  FZF
 endfunction
 
-command! FZFR call s:find_root()
+function! Open_project_files()
+    let root = s:find_root()
+    if !empty(root)
+        execute 'FZF' root
+    el
+        echo 'FZF'
+        FZF
+    endif
+endfunction
+
+command! FZFR call Open_project_files()
 function! FZFConfig()
     no <leader>pf :GitFiles<cr>
     no <leader>ff :FZFR<cr>
@@ -108,7 +118,7 @@ function! UniteConfig()
                 \ 'ignore_pattern', join([
                 \ '\.git/',
                 \ 'node_modules/',
-                \ ], '\|'))
+                \ ], '\'))
 
     "if executable('ag')
         "let g:unite_source_rec_async_command= 'ag --follow --nocolor --nogroup --hidden -g ""'
@@ -129,19 +139,6 @@ function! UniteConfig()
     nnoremap <C-m> :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
 endfunction
 "call UniteConfig()
-
-" Session
-function! SessionConfig()
-    call EnsureDirExists($XDG_DATA_HOME . '/nvim/sessions/')
-    set sessionoptions-=help
-    let g:session_directory = $XDG_DATA_HOME . '/nvim/sessions/'
-    let g:session_autosave = 'yes'
-    let g:session_autoload = 'no'
-    let g:session_default_name = "last"
-    no ms :SaveSession 
-    no \s :OpenSession 
-endfunction
-call SessionConfig()
 
 function! UltiSnipsConfig()
     let g:UltiSnipsExpandTrigger = '<c-k>'
@@ -205,16 +202,31 @@ function! AirlineConfig()
 endfunction
 call AirlineConfig()
 
-function! FugittiveConfig()
-  nmap <Leader>gs <Plug>GitGutterStageHunk
-  nmap <Leader>gr <Plug>GitGutterRevertHunk
-  nmap <Leader>gp <Plug>GitGutterPreviewHunk
-  nmap <Leader>gn <Plug>GitGutterNextHunk
-endfunction
-call FugittiveConfig()
-
 function! VimGrepperConfig()
+    function! s:ag_at_project_root(keyword)
+        let root = s:find_root()
+        if !empty(root)
+            execute 'GrepperAg' a:keyword root
+        else
+           execute 'GrepperAg' a:keyword
+        endif
+    endfunction
+    command! -nargs=1 AgAtProjectRoot call s:ag_at_project_root('<args>')
     " ag search
-    no <Leader>/ :GrepperAg 
+    no <Leader>/ :AgAtProjectRoot 
 endfunction
 call VimGrepperConfig()
+
+function! VimTernConfig()
+    let g:tern#arguments = ["--no-port-file"]
+    no <Leader>tD   :TernDoc<cr>
+    no <Leader>tb   :TernDocBrowse<cr>
+    no <Leader>tt   :TernType<cr>
+    no <Leader>td   :TernDef<cr>
+    no <Leader>tpd  :TernDefPreview<cr>
+    no <Leader>tsd  :TernDefSplit<cr>
+    no <Leader>ttd  :TernDefTab<cr>
+    no <Leader>tr   :TernRefs<cr>
+    no <Leader>tR   :TernRename<cr>
+endfunction
+call VimTernConfig()

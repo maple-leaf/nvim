@@ -4,8 +4,7 @@ Plug 'junegunn/vim-easy-align'
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
 Plug 'benekastah/neomake'
-" if encounter `failed to load python host`, see https://github.com/Shougo/deoplete.nvim/issues/31
-Plug 'Shougo/deoplete.nvim'
+"Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -13,9 +12,6 @@ Plug 'junegunn/fzf.vim'
 "Plug 'Shougo/neomru.vim'
 "Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
-" vim sessions
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
 Plug 'danro/rename.vim'
 " Search results counter
 Plug 'IndexedSearch'
@@ -28,12 +24,9 @@ Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
 Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'kassio/neoterm'
-
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'jreybert/vimagit'
 
 Plug 'tpope/vim-repeat'
 
@@ -58,6 +51,9 @@ function! FrontEndSupport()
     Plug 'othree/yajs.vim', {
                 \   'for': ['javascript']
                 \ }
+    " Typescript support
+    Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install' }
     " Better indentation
     Plug 'gavocanov/vim-js-indent', {
                 \   'for': ['javascript']
