@@ -16,11 +16,7 @@ Plug 'Shougo/neco-vim' "vim source
 function! s:deopleteConfig()
     let g:deoplete#enable_at_startup = 1
 
-    imap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ "\<TAB>" :
-                \ deoplete#mappings#manual_complete()
-
+    imap <silent><expr><TAB>  pumvisible() ? "\<C-n>" :  "\<TAB>"
     inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 endfunction
 call s:deopleteConfig()
