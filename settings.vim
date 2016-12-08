@@ -27,7 +27,7 @@ set fdm=syntax                  " set fold method
 
 set relativenumber
 
-set autochdir " Automatically change the current directory
+"set autochdir " Automatically change the current directory
 
 " language and encoding stuff
 set helplang="en,zh-cn"
@@ -113,7 +113,7 @@ augroup MyAutoCommands
     " Remove trailing whitespaces and ^M chars
     autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,html autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
-    autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
+    "autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
 
     " disable scratch preview window when select completion
     set completeopt-=preview

@@ -3,8 +3,8 @@ Plug 'junegunn/vim-easy-align'
 
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
-Plug 'benekastah/neomake'
-"Plug 'w0rp/ale'
+"Plug 'benekastah/neomake'
+Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -32,6 +32,9 @@ Plug 'tpope/vim-repeat'
 
 " generate tags
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
+
+Plug 'Konfekt/FastFold'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'

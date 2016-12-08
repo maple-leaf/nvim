@@ -32,14 +32,14 @@ function! NeomakeConfig()
         let b:neomake_javascript_eslint_exe = l:eslint
     endfunction
 endfunction
-call NeomakeConfig()
+"call NeomakeConfig()
 
 function! AleConfig()
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \}
 endfunction
-"call AleConfig()
+call AleConfig()
 
 function! CtrlpConfig()
     let g:ctrlp_working_path_mode = 'rw'
@@ -84,29 +84,29 @@ function! CtrlpConfig()
 endfunction
 "call CtrlpConfig()
 
-function! s:find_root()
-  for vcs in ['.git', '.svn', '.hg']
-    let dir = finddir(vcs.'/..', ';')
-    if !empty(dir)
-      return dir
-    endif
-  endfor
-endfunction
-
-function! Open_project_files()
-    let root = s:find_root()
-    if !empty(root)
-        execute 'FZF' root
-    el
-        echo 'FZF'
-        FZF
-    endif
-endfunction
-
-command! FZFR call Open_project_files()
 function! FZFConfig()
+    function! s:find_root()
+        for vcs in ['.git', '.svn', '.hg']
+            let dir = finddir(vcs.'/..', ';')
+            if !empty(dir)
+                return dir
+            endif
+        endfor
+    endfunction
+    function! s:open_project_files()
+        let root = s:find_root()
+        if !empty(root)
+            execute 'FZF' root
+        el
+            echo 'FZF'
+            FZF
+        endif
+    endfunction
+
+    command! FZFR call s:open_project_files()
     no <leader>pf :GitFiles<cr>
-    no <leader>ff :FZFR<cr>
+    "no <leader>ff :FZFR<cr>
+    no <leader>ff :FZF<cr>
     no <leader><cr> :Buffer<cr>
 endfunction
 call FZFConfig()
@@ -203,17 +203,20 @@ endfunction
 call AirlineConfig()
 
 function! VimGrepperConfig()
-    function! s:ag_at_project_root(keyword)
-        let root = s:find_root()
-        if !empty(root)
-            execute 'GrepperAg' a:keyword root
-        else
-           execute 'GrepperAg' a:keyword
-        endif
-    endfunction
-    command! -nargs=1 AgAtProjectRoot call s:ag_at_project_root('<args>')
-    " ag search
-    no <Leader>/ :AgAtProjectRoot 
+    "function! s:ag_at_project_root(keyword)
+        "let root = s:find_root()
+        "if !empty(root)
+            "execute 'cd' root
+            "execute 'GrepperAg' a:keyword
+            "execute 'cd -'
+        "else
+           "execute 'GrepperAg' a:keyword
+        "endif
+    "endfunction
+    "command! -nargs=1 AgAtProjectRoot call s:ag_at_project_root('<args>')
+    "" ag search
+    "no <Leader>/ :AgAtProjectRoot 
+    no <Leader>/ :GrepperAg 
 endfunction
 call VimGrepperConfig()
 
@@ -230,3 +233,7 @@ function! VimTernConfig()
     no <Leader>tR   :TernRename<cr>
 endfunction
 call VimTernConfig()
+
+function! s:tagbarConfig()
+    let g:tagbar_ctags_bin='jsctags'
+endfunction
