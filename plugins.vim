@@ -31,8 +31,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 
 " generate tags
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
+" better ctags: http://docs.ctags.io/en/latest/
+"Plug 'ludovicchabant/vim-gutentags'
+"Plug 'majutsushi/tagbar'
 
 Plug 'Konfekt/FastFold'
 
