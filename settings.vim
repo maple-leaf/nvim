@@ -53,7 +53,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 let g:C_Styles = { '*.c,*.h' : 'C', '*.cc,*.cpp,*.hh' : 'CPP' }
 
 " colorscheme
-set background=dark
+set background=light
 color solarized
 
 set guifont=Bitstream_Vera_Sans_Mono:h18
