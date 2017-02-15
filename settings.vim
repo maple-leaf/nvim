@@ -113,7 +113,7 @@ augroup MyAutoCommands
     au FileType python setl cc=80
     " Remove trailing whitespaces and ^M chars
     autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,html autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
-    autocmd FileType go autocmd BufWritePre <buffer> Fmt
+    "autocmd FileType go autocmd BufWritePre <buffer> Fmt
     "autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
 
     " disable scratch preview window when select completion

@@ -34,6 +34,10 @@ Plug 'tpope/vim-repeat'
 
 Plug 'Konfekt/FastFold'
 
+
+" Langs support
+Plug 'fatih/vim-go'
+
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
     " write html ease
