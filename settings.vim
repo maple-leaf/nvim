@@ -23,7 +23,8 @@ set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 
-set fdm=syntax                  " set fold method
+set fdm=indent                  " set fold method
+"set fdm=syntax                  " set fold method, this will make switching large js buffer(more than 900 lines) laggy when using 'othree/yajs.vim' plugin
 
 set relativenumber
 
