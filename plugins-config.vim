@@ -202,6 +202,22 @@ function! AirlineConfig()
 endfunction
 call AirlineConfig()
 
+command! -nargs=0 -bar Qargs execute 'args ' . s:quickfixFilenames()
+function! s:quickfixFilenames()
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(values(buffer_numbers))
+endfunction
+
+function! s:ag_at_project_root(keyword, replaceStr)
+    Qargs
+    execute "argdo %s/" . a:keyword . "/" . a:replaceStr . "/g"
+endfunction
+command! -nargs=* GRep call s:ag_at_project_root(<f-args>)
+
 function! VimGrepperConfig()
     "function! s:ag_at_project_root(keyword)
         "let root = s:find_root()
