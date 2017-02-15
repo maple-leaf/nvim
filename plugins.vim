@@ -8,9 +8,6 @@ Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/neomru.vim'
-"Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
 Plug 'danro/rename.vim'
 " Search results counter
