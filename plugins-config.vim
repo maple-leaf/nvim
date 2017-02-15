@@ -219,19 +219,8 @@ endfunction
 command! -nargs=* GRep call s:ag_at_project_root(<f-args>)
 
 function! VimGrepperConfig()
-    "function! s:ag_at_project_root(keyword)
-        "let root = s:find_root()
-        "if !empty(root)
-            "execute 'cd' root
-            "execute 'GrepperAg' a:keyword
-            "execute 'cd -'
-        "else
-           "execute 'GrepperAg' a:keyword
-        "endif
-    "endfunction
-    "command! -nargs=1 AgAtProjectRoot call s:ag_at_project_root('<args>')
-    "" ag search
-    "no <Leader>/ :AgAtProjectRoot 
+    runtime autoload/grepper.vim  " initialize g:grepper with default values
+    let g:grepper.dir = 'repo,file'
     no <Leader>/ :GrepperAg 
 endfunction
 call VimGrepperConfig()
