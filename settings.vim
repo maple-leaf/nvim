@@ -9,6 +9,8 @@ set lazyredraw
 " show what mode i'm in
 set showmode
 
+set cmdheight=2
+
 set cul " highlight current line
 highlight clear SignColumn      " SignColumn should match background for
 " things like vim-gitgutter, vim-signify

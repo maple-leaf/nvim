@@ -1,5 +1,9 @@
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/vim-easy-align'
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim' " improved search, fuzzy search, search index and count
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
 
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
@@ -10,8 +14,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'danro/rename.vim'
-" Search results counter
-Plug 'IndexedSearch'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
 Plug 'VisIncr'
 " grep tool
