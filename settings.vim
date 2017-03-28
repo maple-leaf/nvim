@@ -30,7 +30,7 @@ set fdm=indent                  " set fold method
 
 set relativenumber
 
-set autochdir " Automatically change the current directory
+"set autochdir " Automatically change the current directory
 
 " language and encoding stuff
 set helplang="en,zh-cn"
