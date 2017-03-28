@@ -26,6 +26,10 @@ function! s:deopleteConfig()
 
     imap <silent><expr><TAB>  pumvisible() ? "\<C-n>" :  "\<TAB>"
     inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    " go config
+    let g:deoplete#sources#go#use_cache = 1
+    let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
 endfunction
 call s:deopleteConfig()
 

@@ -39,6 +39,7 @@ Plug 'Konfekt/FastFold'
 
 " Langs support
 Plug 'fatih/vim-go'
+Plug 'jodosha/vim-godebug'
 
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
