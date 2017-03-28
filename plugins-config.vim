@@ -268,17 +268,27 @@ call s:easyMotionConfig()
 " use these mappings as default search and somtimes want to move cursor with
 " EasyMotion.
 function! s:incsearch_easymotion_intergration(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+function! s:incsearch_easymotion_intergration_with_fuzzy(...) abort
     return extend(copy({
                 \   'converters': [incsearch#config#fuzzyword#converter()],
                 \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
                 \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-                \   'is_expr': 0,
-                \   'is_stay': 1
+                \   'is_expr': 0
                 \ }), get(a:, 1, {}))
 endfunction
 
 function! s:incsearchConfig()
     noremap <silent><expr> /  incsearch#go(<SID>incsearch_easymotion_intergration())
     noremap <silent><expr> ?  incsearch#go(<SID>incsearch_easymotion_intergration({'command': '?'}))
+    noremap <silent><expr> g/  incsearch#go(<SID>incsearch_easymotion_intergration_with_fuzzy())
+    noremap <silent><expr> g?  incsearch#go(<SID>incsearch_easymotion_intergration_with_fuzzy({'command': '?'}))
 endfunction
 call s:incsearchConfig()
