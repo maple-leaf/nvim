@@ -146,3 +146,5 @@ function! RsyncToDev(pattern)
 endfunction
 
 command! -nargs=1 Rsync call RsyncToDev('<args>')
+
+command! FixSyntax :syntax sync fromstart " sometimes vim can't highlight syntax correctly
