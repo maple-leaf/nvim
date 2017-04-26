@@ -56,6 +56,8 @@ function! FrontEndSupport()
     Plug 'cakebaker/scss-syntax.vim'
     " react jsx support
     Plug 'mxw/vim-jsx'
+    " vue support
+    Plug 'posva/vim-vue'
     " XML/HTML tags navigation
     Plug 'matchit.zip'
 

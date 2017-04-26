@@ -99,7 +99,7 @@ augroup MyAutoCommands
     autocmd BufRead,BufNewFile *.liquid,*.mustache setfiletype liquid
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-    autocmd BufNewFile,BufRead *.hbs,*.phtml,*.vue set filetype=html
+    autocmd BufNewFile,BufRead *.hbs,*.phtml set filetype=html
 
     " Ruby files
     autocmd FileType ruby,eruby, imap <buffer> <CR> <C-R>=RubyEndToken()<CR>
