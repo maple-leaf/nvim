@@ -1,3 +1,6 @@
+if empty($XDG_DATA_HOME)
+	let $XDG_DATA_HOME = $HOME . '/.config'
+endif
 source  $XDG_DATA_HOME/nvim/helper.vim
 
 let mapleader = "\<Space>"
