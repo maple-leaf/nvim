@@ -41,6 +41,10 @@ Plug 'Konfekt/FastFold'
 Plug 'fatih/vim-go'
 Plug 'jodosha/vim-godebug'
 
+Plug 'elixir-lang/vim-elixir'
+Plug 'thinca/vim-ref'
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
+
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
     " write html ease
