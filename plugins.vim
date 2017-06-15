@@ -15,7 +15,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'danro/rename.vim'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
-Plug 'VisIncr'
+Plug 'iiey/visincr'
 " grep tool
 Plug 'mhinz/vim-grepper'
 
@@ -59,7 +59,7 @@ function! FrontEndSupport()
     " vue support
     Plug 'posva/vim-vue'
     " XML/HTML tags navigation
-    Plug 'matchit.zip'
+    Plug 'tmhedberg/matchit'
 
     " JS syntax, supports ES6
     Plug 'othree/yajs.vim', {
