@@ -22,3 +22,8 @@ function! s:vimgitConfig()
     let g:magit_discard_untracked_do_delete = 1
 endfunction
 call s:vimgitConfig()
+
+function! s:magitConfig()
+    nno <Leader>ma :MagitOnly<cr>
+endfunction
+call s:magitConfig()
