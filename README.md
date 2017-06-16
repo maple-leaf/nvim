@@ -24,61 +24,80 @@
  - 从terminal中启动`nvim`, 然后输入 `:PlugInstall`, 将安装以下插件(共30个,均可在github中搜索到):
     - ale //语法检查
     - vim-session //项目管理
-    - phpcomplete.vim
     - my-vim-templates //本人自己的template
-    - deoplete-go
     - fzf // 项目文件查找, 最近打开的文件，已打开的文件
-    - import-js
+    - UltiSnips-ext //本人自己的snippet
+    - matchit
+    - vim-repeat
+    - ncm-flow
     - neco-vim
-    - deoplete.nvim //自动补全
-    - deoplete-ternjs
-    - deoplete-typescript
     - vim-snippets
-    - vim-grepper
     - javascript-libraries-syntax.vim
-    - yats.vim
-    - vim-javacomplete2
-    - vim-go
-    - elixir.nvim
-    - vim-colorschemes
-    - vim-less
-    - FastFold
-    - vim-fugitive
     - incsearch-fuzzy.vim
     - vim-jsdoc
     - vim-easy-align
+    - tern_for_vim
     - scss-syntax.vim
-    - vim-repeat
-    - vim-misc
-    - vim-easymotion
+    - visincr
+    - csscomplete.vim
+    - vim-grepper
     - vim-template
     - yajs.vim
     - vim-airline-themes
-    - vimagit
+    - vim-go
+    - vim-colorschemes
+    - vim-js-indent
     - vim-gitgutter
-    - nerdcommenter
-    - vim-ref
+    - vim-gutentags
     - incsearch.vim
-    - vim-godebug
     - vim-airline
     - typescript-tools.vim
-    - rename.vim
-    - vim-js-indent
-    - incsearch-easymotion.vim
+    - import-js
+    - yats.vim
+    - elixir.nvim
+    - vim-less
+    - nvim-completion-manager
     - ultisnips
+    - vim-fugitive
+    - rename.vim
+    - vim-misc
+    - nvim-cm-tern
+    - incsearch-easymotion.vim
+    - vim-easymotion
+    - FastFold
     - html5.vim
-    - fzf.vim
-    - UltiSnips-ext //本人自己的snippet
     - vim-jsx
     - nyaovim-popup-tooltip
     - vim-elixir
     - vim-node
+    - vim-ref
+    - vim-godebug
     - emmet-vim
     - vim-surround
     - vim-vue
+    - nerdcommenter
+    - vimagit
 
 - 安装python依赖
     * 由于`UltiSnips` 和 `deoplete` 依赖python，所以需要安装`python3`: `brew install python3`。然后运行pip3安装`neovim`: `pip3 install neovim`
     * `nvim-completion-manager`依赖安装：`pip3 install --user neovim jedi mistune psutil setproctitle`
+
+- Tags
+    * ctags工具
+
+        推荐使用[universal-ctags](https://github.com/universal-ctags/ctags),这个版本一直在维护更新，对很多语言的支持更好。mac用户可以brew安装，查看[homebrew-universal-ctags](https://github.com/universal-ctags/homebrew-universal-ctags)
+
+    * 查看生成的tag列表
+        - 查看当前文件的tags: <Space>oo
+        - 查看项目所有文件<没有被ctags ignored>的tags: <Space>og
+
+- Git
+    * 使用`vimagit`进行代码更改查看，添加，提交操作
+        - `<Space>ma`进入`vimagit`
+        - `<Ctrl+n>`, `<Ctrl>+p`跳转到下/上一个更改片段
+        - `S`<大写> 添加或者取消添加所处片段或文件或__选择__的行
+        - `CC` 填写提交信息
+        - 填写完后再次 `CC` 确认提交
+        - 其他具体操作可按`?`显示帮助菜单，再按一次`?`隐藏
 
 - 开始你的`neovim`编码世界吧
