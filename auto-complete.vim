@@ -2,24 +2,57 @@
 "                               Auto complete                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" if encounter `failed to load python host`, see https://github.com/Shougo/deoplete.nvim/issues/31
-Plug 'Shougo/deoplete.nvim'
-Plug 'carlitux/deoplete-ternjs'
-Plug 'mhartington/deoplete-typescript'
-Plug 'Shougo/neco-vim' "vim source
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+let g:completeMethod = 'nvm' " nvm, deoplete, ycm
 
-"Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
+""""""""""""""""""""""""
+"  Completion Manager  "
+""""""""""""""""""""""""
 
-Plug 'artur-shaik/vim-javacomplete2' "java source
+if g:completeMethod == 'nvm'
+    Plug 'roxma/nvim-completion-manager'
+elseif g:completeMethod == 'deoplete'
+    " if encounter `failed to load python host`, see https://github.com/Shougo/deoplete.nvim/issues/31
+    Plug 'Shougo/deoplete.nvim'
+elseif g:completeMethod == 'ycm'
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
+endif
 
-"Plug 'mkusher/padawan.vim'
-Plug 'shawncplus/phpcomplete.vim'
+"""""""""""""
+"  Sources  "
+"""""""""""""
 
+Plug 'Shougo/neco-vim' " vimscript source
+Plug 'othree/csscomplete.vim' " css completion
+
+if g:completeMethod == 'nvm'
+    Plug 'roxma/nvim-cm-tern', {'do': 'npm install'}" js completion
+    Plug 'roxma/ncm-flow' " flow completion
+elseif g:completeMethod == 'deoplete'
+    Plug 'carlitux/deoplete-ternjs'
+    Plug 'mhartington/deoplete-typescript'
+    Plug 'zchee/deoplete-go', { 'do': 'make'} " golang completion
+endif
 
 """"""""""""
 "  Config  "
 """"""""""""
+
+function! s:nvmConfig()
+    set shortmess+=c
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " css completion via `csscomplete#CompleteCSS`
+    " The `'cm_refresh_patterns'` is PCRE.
+    " Be careful with `'scoping': 1` here, not all sources, especially omnifunc,
+    " can handle this feature properly.
+    au User CmSetup call cm#register_source({'name' : 'cm-css',
+                \ 'priority': 9, 
+                \ 'scoping': 1,
+                \ 'scopes': ['css','scss'],
+                \ 'abbreviation': 'css',
+                \ 'cm_refresh_patterns':[':\s+\w*$'],
+                \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
+                \ })
+endfunction
 
 function! s:deopleteConfig()
     let g:deoplete#enable_at_startup = 1
@@ -31,22 +64,18 @@ function! s:deopleteConfig()
     let g:deoplete#sources#go#use_cache = 1
     let g:deoplete#sources#go#json_directory = '~/.cache/deoplete/go/$GOOS_$GOARCH'
 endfunction
-call s:deopleteConfig()
 
 function! s:ycmConfig()
-    "let g:ycm_semantic_triggers = {}
-    "let g:ycm_semantic_triggers.php =
-    "\ ['->', '::', '(', 'use ', 'namespace ', '\']
+    let g:ycm_semantic_triggers = {}
+    let g:ycm_semantic_triggers.php =
+                \ ['->', '::', '(', 'use ', 'namespace ', '\']
 endfunction
 
-""""""""""
-"  JAVA  "
-""""""""""
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-"""""""""
-"  PHP  "
-"""""""""
-"let g:padawan#composer_command = "composer"
-let g:phpcomplete_index_composer_command = "composer"
-autocmd  FileType  php setlocal omnifunc=phpcomplete#CompletePHP
+if g:completeMethod == 'nvm'
+    call s:nvmConfig()
+elseif g:completeMethod == 'deoplete'
+    call s:deopleteConfig()
+elseif g:completeMethod == 'ycm'
+    call s:ycmConfig()
+endif

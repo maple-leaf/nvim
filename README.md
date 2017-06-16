@@ -78,6 +78,7 @@
     - vim-vue
 
 - 安装python依赖
-    由于`UltiSnips` 和 `deoplete` 依赖python，所以需要安装`python3`: `brew install python3`。然后运行pip3安装`neovim`: `pip3 install neovim`
+    * 由于`UltiSnips` 和 `deoplete` 依赖python，所以需要安装`python3`: `brew install python3`。然后运行pip3安装`neovim`: `pip3 install neovim`
+    * `nvim-completion-manager`依赖安装：`pip3 install --user neovim jedi mistune psutil setproctitle`
 
 - 开始你的`neovim`编码世界吧

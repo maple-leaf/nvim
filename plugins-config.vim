@@ -109,6 +109,8 @@ function! FZFConfig()
     "no <leader>ff :FZFR<cr>
     no <leader>ff :FZF<cr>
     no <leader><cr> :Buffer<cr>
+    no <leader>oo :BTags<cr>
+    no <leader>og :Tags<cr>
 endfunction
 call FZFConfig()
 
@@ -242,6 +244,10 @@ call VimTernConfig()
 
 function! s:tagbarConfig()
     let g:tagbar_ctags_bin='jsctags'
+endfunction
+
+function! s:genTagsConfig()
+    g:gen_tags#ctags_auto_gen = 1
 endfunction
 
 function! s:easyMotionConfig()

@@ -31,8 +31,9 @@ Plug 'tpope/vim-repeat'
 
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/
-"Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 "Plug 'majutsushi/tagbar'
+"Plug 'jsfaint/gen_tags.vim'
 
 Plug 'Konfekt/FastFold'
 
