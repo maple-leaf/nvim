@@ -96,6 +96,7 @@ endfunction
 call MapFoldCtrl()
 
 ino ;; <ESC>
+ino jj <ESC>
 vno ;; <ESC>
 nno ;; <ESC>
 
