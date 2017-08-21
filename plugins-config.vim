@@ -308,3 +308,28 @@ function! s:incsearchConfig()
     noremap <silent><expr> g?  incsearch#go(<SID>incsearch_easymotion_intergration_with_fuzzy({'command': '?'}))
 endfunction
 call s:incsearchConfig()
+
+function! s:vueConfig()
+    " https://github.com/posva/vim-vue#vim-gets-slows-down-when-using-this-plugin-how-can-i-fix-that
+    let let g:vue_disable_pre_processors = 1
+    let g:ft = ''
+    " NERDCommenter hook for vue
+    function! NERDCommenter_before()
+        if &ft == 'vue'
+            let g:ft = 'vue'
+            let stack = synstack(line('.'), col('.'))
+            if len(stack) > 0
+                let syn = synIDattr((stack)[0], 'name')
+                if len(syn) > 0
+                    exe 'setf ' . substitute(tolower(syn), '^vue_', '', '')
+                endif
+            endif
+        endif
+    endfunction
+    function! NERDCommenter_after()
+        if g:ft == 'vue'
+            setf vue
+            let g:ft = ''
+        endif
+    endfunction
+endfunction
