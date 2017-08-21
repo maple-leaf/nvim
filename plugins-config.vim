@@ -227,7 +227,12 @@ endfunction
 command! -nargs=* GRep call s:ag_at_project_root(<f-args>)
 
 function! VimGrepperConfig()
-    runtime autoload/grepper.vim  " initialize g:grepper with default values
+    let g:grepper               = {}
+    let g:grepper.tools         = ['git', 'ag', 'rg']
+    let g:grepper.jump          = 1
+    let g:grepper.next_tool     = '<tab>'
+    let g:grepper.simple_prompt = 1
+    let g:grepper.quickfix      = 1
     let g:grepper.dir = 'repo,file'
     no <Leader>/ :GrepperAg 
 endfunction
