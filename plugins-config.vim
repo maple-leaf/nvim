@@ -284,13 +284,13 @@ call s:easyMotionConfig()
 " use these mappings as default search and somtimes want to move cursor with
 " EasyMotion.
 function! s:incsearch_easymotion_intergration(...) abort
-  return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {
-  \     "\<CR>": '<Over>(easymotion)'
-  \   },
-  \   'is_expr': 0
-  \ }), get(a:, 1, {}))
+    return incsearch#util#deepextend(deepcopy({
+                \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+                \   'keymap': {
+                \     "\<CR>": '<Over>(easymotion)'
+                \   },
+                \   'is_expr': 0
+                \ }), get(a:, 1, {}))
 endfunction
 function! s:incsearch_easymotion_intergration_with_fuzzy(...) abort
     return extend(copy({
