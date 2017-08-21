@@ -35,10 +35,15 @@ endfunction
 "call NeomakeConfig()
 
 function! AleConfig()
+    " why disable elixir linter: https://github.com/phoenixframework/phoenix/issues/1165
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'elixir': [],
                 \}
     let g:ale_lint_delay = 800
+    " Map movement through errors without wrapping.
+    nmap <Leader>ep <Plug>(ale_previous)
+    nmap <Leader>en <Plug>(ale_next)
 endfunction
 call AleConfig()
 
