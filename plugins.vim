@@ -38,6 +38,8 @@ Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'Konfekt/FastFold'
 
+" format code
+Plug 'sbdchd/neoformat'
 
 " Langs support
 Plug 'fatih/vim-go'
