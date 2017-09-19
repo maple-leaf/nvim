@@ -311,9 +311,9 @@ call s:incsearchConfig()
 
 function! s:vueConfig()
     " https://github.com/posva/vim-vue#vim-gets-slows-down-when-using-this-plugin-how-can-i-fix-that
-    let let g:vue_disable_pre_processors = 1
-    let g:ft = ''
+    let g:vue_disable_pre_processors = 1
     " NERDCommenter hook for vue
+    let g:ft = ''
     function! NERDCommenter_before()
         if &ft == 'vue'
             let g:ft = 'vue'
