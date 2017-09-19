@@ -333,3 +333,14 @@ function! s:vueConfig()
         endif
     endfunction
 endfunction
+call s:vueConfig()
+
+function! s:swoopConfig()
+    nmap <Leader>sw :call Swoop()<CR>
+    vmap <Leader>sw :call SwoopSelection()<CR>
+    nmap <Leader>sm :call SwoopMulti()<CR>
+    vmap <Leader>sm :call SwoopMultiSelection()<CR>
+    let g:swoopPatternSpaceInsertsWildcard = 0
+    autocmd!    BufWinLeave   swoopBuf   call execute('bd! swoopBuf')
+endfunction
+call s:swoopConfig()

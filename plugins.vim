@@ -28,6 +28,7 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'kassio/neoterm'
 
 Plug 'tpope/vim-repeat'
+Plug 'pelodelfuego/vim-swoop'
 
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/

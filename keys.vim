@@ -104,7 +104,7 @@ nno ;; <ESC>
 ino <c-j> <c-x><c-f>
 " display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+"nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " some mappings for copying the file name to the clipboard. 
 " Convert slashes to backslashes for Windows.
@@ -140,3 +140,7 @@ vno <Leader>[ "*y
 imap <c-v> <c-r>*
 no <Leader>] "*p
 vno <Leader>] "*p
+
+imap <c-g><c-g> <ESC>:q<cr>
+nmap <c-g><c-g> :q<cr>
+vmap <c-g><c-g> :q<cr>
