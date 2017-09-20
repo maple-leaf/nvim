@@ -89,6 +89,15 @@ let g:netrw_winsize=30
 :imap <F9> <nop>
 :set pastetoggle=<F9>
 
+
+" warn me when files change outside
+augroup improved_autoread
+    autocmd!
+    autocmd FocusGained * silent! checktime
+    autocmd BufEnter * silent! checktime
+augroup end
+noremap <c-z> :suspend<cr>:silent! checktime<cr>
+
 augroup MyAutoCommands
     " Clear old autocmds in group
     autocmd!
