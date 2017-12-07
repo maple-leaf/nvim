@@ -39,11 +39,21 @@ function! AleConfig()
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
                 \   'elixir': [],
+                \   'html': [],
                 \}
     let g:ale_lint_delay = 800
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
     nmap <Leader>en <Plug>(ale_next)
+    nmap <Leader>ef <Plug>(ale_fix)
+    let g:ale_fixers = {
+                \   'javascript': [
+                \       'eslint'
+                \   ],
+                \   'vue': [
+                \       'eslint'
+                \   ]
+                \}
 endfunction
 call AleConfig()
 

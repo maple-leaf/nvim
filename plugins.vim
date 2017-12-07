@@ -1,4 +1,6 @@
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
+Plug 'icymind/NeoSolarized'
+
 Plug 'junegunn/vim-easy-align'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim' " improved search, fuzzy search, search index and count
@@ -29,6 +31,10 @@ Plug 'scrooloose/nerdcommenter'
 
 Plug 'tpope/vim-repeat'
 Plug 'pelodelfuego/vim-swoop'
+Plug 'sgur/vim-editorconfig'
+" XML/HTML tags navigation
+Plug 'tmhedberg/matchit'
+Plug 'jiangmiao/auto-pairs'
 
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/
@@ -62,37 +68,37 @@ function! FrontEndSupport()
     Plug 'mxw/vim-jsx'
     " vue support
     Plug 'posva/vim-vue'
-    " XML/HTML tags navigation
-    Plug 'tmhedberg/matchit'
 
     " JS syntax, supports ES6
     Plug 'othree/yajs.vim', {
-                \   'for': ['javascript']
+                \   'for': ['javascript', 'vue']
                 \ }
+
     " Typescript support
     Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install' }
+    Plug 'mhartington/nvim-typescript'
+
     " Better indentation
     Plug 'gavocanov/vim-js-indent', {
-                \   'for': ['javascript']
+                \   'for': ['javascript', 'vue']
                 \ }
     " JS syntax for common libraries
     Plug 'othree/javascript-libraries-syntax.vim', {
-                \   'for': ['javascript']
+                \   'for': ['javascript', 'vue']
                 \ }
     " Tern auto-completion engine for JS (requires node/npm)
     if executable('node')
         Plug 'marijnh/tern_for_vim', {
                     \     'do': 'npm install',
-                    \     'for': ['javascript', 'coffee']
+                    \     'for': ['javascript', 'vue']
                     \   }
     endif
     " Makes gf work on node require statements
     Plug 'moll/vim-node', {
-                \   'for': ['javascript']
+                \   'for': ['javascript', 'vue']
                 \ }
     Plug 'trotzig/import-js', {
-                \ 'for': ['javascript']
+                \ 'for': ['javascript', 'vue']
                 \}
 endfunction
 call FrontEndSupport()

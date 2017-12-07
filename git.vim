@@ -13,7 +13,7 @@ Plug 'jreybert/vimagit'
 function! s:fugittiveConfig()
     nmap <Leader>gs <Plug>GitGutterStageHunk
     nmap <Leader>gr <Plug>GitGutterRevertHunk
-    nmap <Leader>gp <Plug>GitGutterPreviewHunk
+    nmap <Leader>gp <Plug>GitGutterPrevHunk
     nmap <Leader>gn <Plug>GitGutterNextHunk
 endfunction
 call s:fugittiveConfig()

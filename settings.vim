@@ -57,11 +57,17 @@ let g:C_Styles = { '*.c,*.h' : 'C', '*.cc,*.cpp,*.hh' : 'CPP' }
 
 " colorscheme
 set background=dark
-color solarized
+"color solarized
+colorscheme NeoSolarized
 
 set guifont=Bitstream_Vera_Sans_Mono:h18
 
 set laststatus=2
+
+" terminal true color feature
+if has("termguicolors")
+    set termguicolors
+endif
 
 function! CustomStatusLine()
   " set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
