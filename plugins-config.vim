@@ -260,7 +260,19 @@ function! VimTernConfig()
     no <Leader>tr   :TernRefs<cr>
     no <Leader>tR   :TernRename<cr>
 endfunction
-call VimTernConfig()
+"call VimTernConfig()
+autocmd BufRead,BufNewFile *.js call VimTernConfig()
+
+function! VimTSCConfig()
+    no <Leader>tD   :TSDoc<cr>
+    no <Leader>tt   :TSType<cr>
+    no <Leader>ttd   :TSTypeDef<cr>
+    no <Leader>td   :TSDef<cr>
+    no <Leader>tpd  :TSDefPreview<cr>
+    no <Leader>tr   :TSRefs<cr>
+    no <Leader>tR   :TSRename<cr>
+endfunction
+autocmd BufRead,BufNewFile *.ts call VimTSCConfig()
 
 function! s:tagbarConfig()
     let g:tagbar_ctags_bin='jsctags'
