@@ -7,6 +7,8 @@ Plug 'haya14busa/incsearch.vim' " improved search, fuzzy search, search index an
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 
+Plug 'xolox/vim-session'
+
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
 "Plug 'benekastah/neomake'
