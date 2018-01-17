@@ -1,3 +1,8 @@
+function! NERDCommentConfig()
+    let g:NERDSpaceDelims = 1
+endfunction
+call NERDCommentConfig()
+
 function! NeomakeConfig()
     autocmd! BufWritePost * Neomake
     let g:neomake_open_list = 0
@@ -38,9 +43,13 @@ function! AleConfig()
     " why disable elixir linter: https://github.com/phoenixframework/phoenix/issues/1165
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
+                \   'vue': ['eslint'],
                 \   'elixir': [],
-                \   'html': [],
+                \   'html': ['eslint'],
                 \}
+    let g:ale_linter_aliases = {
+                \ 'vue': ['html', 'javascript', 'css']
+                \ }
     let g:ale_lint_delay = 800
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
@@ -51,6 +60,9 @@ function! AleConfig()
                 \       'eslint'
                 \   ],
                 \   'vue': [
+                \       'eslint'
+                \   ],
+                \   'html': [
                 \       'eslint'
                 \   ]
                 \}
