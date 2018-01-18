@@ -113,31 +113,29 @@ endfunction
 "call CtrlpConfig()
 
 function! FZFConfig()
-    function! s:find_root()
-        for vcs in ['.git', '.svn', '.hg']
-            let dir = finddir(vcs.'/..', ';')
-            if !empty(dir)
-                return dir
-            endif
-        endfor
-    endfunction
-    function! s:open_project_files()
-        let root = s:find_root()
-        if !empty(root)
-            execute 'FZF' root
-        el
-            echo 'FZF'
-            FZF
-        endif
+    " CTRL-A CTRL-Q to select all and build quickfix list
+    function! s:build_quickfix_list(lines)
+        call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+        copen
+        cc
     endfunction
 
-    command! FZFR call s:open_project_files()
+    let g:fzf_action = {
+                \ 'ctrl-q': function('s:build_quickfix_list'),
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-x': 'split',
+                \ 'ctrl-v': 'vsplit' }
+
+    let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
+
     no <leader>pf :GitFiles --cached --others --exclude-standard<cr>
-    "no <leader>ff :FZFR<cr>
     no <leader>ff :FZF<cr>
     no <leader><cr> :Buffer<cr>
     no <leader>oo :BTags<cr>
     no <leader>og :Tags<cr>
+    no <leader>/ :Ag<cr>
 endfunction
 call FZFConfig()
 
@@ -229,7 +227,7 @@ function! VimGrepperConfig()
     let g:grepper.dir = 'repo,file'
     no <Leader>/ :GrepperAg 
 endfunction
-call VimGrepperConfig()
+" call VimGrepperConfig()
 
 function! VimTernConfig()
     let g:tern#arguments = ["--no-port-file"]
