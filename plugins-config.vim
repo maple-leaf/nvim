@@ -141,35 +141,6 @@ function! FZFConfig()
 endfunction
 call FZFConfig()
 
-" Unite
-function! UniteConfig()
-    " Set up some custom ignores
-    call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-                \ 'ignore_pattern', join([
-                \ '\.git/',
-                \ 'node_modules/',
-                \ ], '\'))
-
-    "if executable('ag')
-        "let g:unite_source_rec_async_command= 'ag --follow --nocolor --nogroup --hidden -g ""'
-        "let g:unite_source_grep_command = 'ag'
-        "let g:unite_source_grep_default_opts = '--column --nogroup --nogroup'
-        "let g:unite_source_grep_recursive_opt = ''
-    "endif
-
-    let g:unite_source_rec_max_cache_files = 99999
-
-    let g:unite_source_history_yank_enable = 1
-    call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    nnoremap <C-p> :<C-u>Unite -no-split -buffer-name=files   -start-insert file_rec/async:!<cr>
-    nnoremap <C-i> :<C-u>Unite -no-split -buffer-name=files   -start-insert file<cr>
-    "nnoremap <C-m> :<C-u>Unite -no-split -buffer-name=mru     -start-insert file_mru:!<cr>
-    nnoremap <C-o> :<C-u>Unite -no-split -buffer-name=outline -start-insert outline<cr>
-    nnoremap <C-h> :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
-    nnoremap <C-m> :<C-u>Unite -no-split -buffer-name=buffer  buffer<cr>
-endfunction
-"call UniteConfig()
-
 function! UltiSnipsConfig()
     let g:UltiSnipsExpandTrigger = '<c-k>'
     let g:UltiSnipsJumpForwardTrigger = '<c-k>'
