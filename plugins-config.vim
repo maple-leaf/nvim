@@ -215,7 +215,7 @@ endfunction
 
 function! s:ag_at_project_root(keyword, replaceStr)
     Qargs
-    execute "argdo %s/" . a:keyword . "/" . a:replaceStr . "/g"
+    execute "cdo %s/" . a:keyword . "/" . a:replaceStr . "/g"
 endfunction
 command! -nargs=* GRep call s:ag_at_project_root(<f-args>)
 
