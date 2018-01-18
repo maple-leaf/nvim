@@ -132,7 +132,7 @@ function! FZFConfig()
     endfunction
 
     command! FZFR call s:open_project_files()
-    no <leader>pf :GitFiles<cr>
+    no <leader>pf :GitFiles --cached --others --exclude-standard<cr>
     "no <leader>ff :FZFR<cr>
     no <leader>ff :FZF<cr>
     no <leader><cr> :Buffer<cr>
