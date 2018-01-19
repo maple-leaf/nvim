@@ -32,7 +32,6 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'kassio/neoterm'
 
 Plug 'tpope/vim-repeat'
-Plug 'pelodelfuego/vim-swoop'
 Plug 'sgur/vim-editorconfig'
 " XML/HTML tags navigation
 Plug 'tmhedberg/matchit'

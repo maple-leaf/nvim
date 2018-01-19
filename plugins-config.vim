@@ -136,6 +136,7 @@ function! FZFConfig()
     no <leader>oo :BTags<cr>
     no <leader>og :Tags<cr>
     no <leader>/ :Ag<cr>
+    no <leader>s :BLines<cr>
 endfunction
 call FZFConfig()
 
@@ -337,13 +338,3 @@ function! s:vueConfig()
     endfunction
 endfunction
 call s:vueConfig()
-
-function! s:swoopConfig()
-    nmap <Leader>sw :call Swoop()<CR>
-    vmap <Leader>sw :call SwoopSelection()<CR>
-    nmap <Leader>sm :call SwoopMulti()<CR>
-    vmap <Leader>sm :call SwoopMultiSelection()<CR>
-    let g:swoopPatternSpaceInsertsWildcard = 0
-    autocmd!    BufWinLeave   swoopBuf   call execute('bd! swoopBuf')
-endfunction
-call s:swoopConfig()
