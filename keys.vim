@@ -29,6 +29,7 @@ call MapTabCtrl()
 nmap  <leader>cd :lcd %:h<cr>
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
+
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
@@ -131,9 +132,6 @@ cmap w!! w !sudo tee > /dev/null %
 
 no <Leader><tab> :b#<cr>
 
-" netrw
-no <Leader>e :Lexplore<cr>
-
 " copy from and paste to clipboard
 no <Leader>[ "*y
 vno <Leader>[ "*y
@@ -141,6 +139,7 @@ imap <c-v> <c-r>*
 no <Leader>] "*p
 vno <Leader>] "*p
 
+" use double <ctrl-g> to quit window
 imap <c-g><c-g> <ESC>:q<cr>
 nmap <c-g><c-g> :q<cr>
 vmap <c-g><c-g> :q<cr>

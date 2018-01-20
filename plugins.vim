@@ -11,7 +11,6 @@ Plug 'xolox/vim-session'
 
 " Group dependencies, vim-snippets depends on ultisnips
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
-"Plug 'benekastah/neomake'
 Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -20,8 +19,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'danro/rename.vim'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
 Plug 'iiey/visincr'
-" grep tool
-Plug 'mhinz/vim-grepper'
+Plug 'ipod825/vim-netranger'
 
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
@@ -40,8 +38,6 @@ Plug 'jiangmiao/auto-pairs'
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/
 Plug 'ludovicchabant/vim-gutentags'
-"Plug 'majutsushi/tagbar'
-"Plug 'jsfaint/gen_tags.vim'
 
 Plug 'Konfekt/FastFold'
 
@@ -87,13 +83,6 @@ function! FrontEndSupport()
     Plug 'othree/javascript-libraries-syntax.vim', {
                 \   'for': ['javascript', 'vue']
                 \ }
-    " Tern auto-completion engine for JS (requires node/npm)
-    if executable('node')
-        Plug 'marijnh/tern_for_vim', {
-                    \     'do': 'npm install',
-                    \     'for': ['javascript', 'vue']
-                    \   }
-    endif
     " Makes gf work on node require statements
     Plug 'moll/vim-node', {
                 \   'for': ['javascript', 'vue']

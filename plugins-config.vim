@@ -1,43 +1,56 @@
+function! FZFConfig()
+    " CTRL-A CTRL-Q to select all and build quickfix list
+    function! s:build_quickfix_list(lines)
+        call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+        copen
+        cc
+    endfunction
+
+    let g:fzf_action = {
+                \ 'ctrl-q': function('s:build_quickfix_list'),
+                \ 'ctrl-t': 'tab split',
+                \ 'ctrl-x': 'split',
+                \ 'ctrl-v': 'vsplit' }
+
+    let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+    " use raw ag, should provide pattern when use
+    " Augmenting Ag command using fzf#vim#with_preview function
+    "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+    "     * For syntax-highlighting, Ruby and any of the following tools are required:
+    "       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+    "       - CodeRay: http://coderay.rubychan.de/
+    "       - Rouge: https://github.com/jneen/rouge
+    "
+    "   :RAg  - Start fzf with preview window at right
+    "   :RAg! - Start fzf in fullscreen and display the preview window above
+    command! -bang -nargs=* Rag
+                \ call fzf#vim#ag_raw(<q-args>,
+                \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+                \                         : fzf#vim#with_preview('right:50%'),
+                \                 <bang>0)
+
+    function! s:blines_with_cword()
+        " let g:word = execute('echo ')
+        call fzf#vim#buffer_lines(expand("<cword>"))
+    endfunction
+    command! SearchCWord call s:blines_with_cword()
+
+    no <leader>pf :GitFiles --cached --others --exclude-standard<cr>
+    no <leader>ff :FZF<cr>
+    no <leader><cr> :Buffer<cr>
+    no <leader>oo :BTags<cr>
+    no <leader>og :Tags<cr>
+    " give cword as default argument for Rag
+    no <leader>/ :Rag <C-R><C-W>
+    no <leader>s :SearchCWord<cr>
+endfunction
+call FZFConfig()
+
 function! NERDCommentConfig()
     let g:NERDSpaceDelims = 1
 endfunction
 call NERDCommentConfig()
-
-function! NeomakeConfig()
-    autocmd! BufWritePost * Neomake
-    let g:neomake_open_list = 0
-    let g:neomake_list_height = 5
-    nmap <Leader>en :lnext<CR>      " next error/warning
-    nmap <Leader>ep :lprev<CR>      " previous error/warning
-
-    "let g:neomake_javascript_jshint_maker = {
-                "\ 'args': ['--verbose', '--config=$XDG_DATA_HOME/nvim/.jshintrc'],
-                "\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-                "\ }
-    "let g:neomake_javascript_enabled_makers = ['jshint']
-    let g:neomake_javascript_enabled_makers = ['eslint']
-
-    function! NeomakeESlintChecker()
-        "  configure b:syntastic_javascript_eslint_exec to point to the
-        "  locally installed version of eslint if it exists otherwise fallback to the globally installed
-        "  https://github.com/benekastah/neomake/issues/247#issuecomment-175808155
-        " https://github.com/airbnb/javascript/issues/465#issuecomment-173281502
-        let l:npm_bin = ''
-        "let l:eslint = 'eslint'
-        let l:eslint = 'eslint_d' " https://github.com/mantoni/eslint_d.js make eslint faster
-
-        if executable('npm')
-            let l:npm_bin = split(system('npm bin'), '\n')[0]
-        endif
-
-        if strlen(l:npm_bin) && executable(l:npm_bin . '/eslint_d')
-            let l:eslint = l:npm_bin . '/eslint_d'
-        endif
-
-        let b:neomake_javascript_eslint_exe = l:eslint
-    endfunction
-endfunction
-"call NeomakeConfig()
 
 function! AleConfig()
     " why disable elixir linter: https://github.com/phoenixframework/phoenix/issues/1165
@@ -68,77 +81,6 @@ function! AleConfig()
                 \}
 endfunction
 call AleConfig()
-
-function! CtrlpConfig()
-    let g:ctrlp_working_path_mode = 'rw'
-    "nnoremap <silent> <C-b> :CtrlPBuffer<CR>
-    function! MapCr()
-        if &buftype ==# "quickfix"
-            execute "normal! \<CR>"
-        else
-            ":CtrlPMRUFiles<cr>
-            :CtrlPBuffer
-        endif
-    endfunction
-    nnoremap <silent> <C-m> :call MapCr()<cr>
-    let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:50'
-    let g:ctrlp_use_caching = 1
-    let g:ctrlp_clear_cache_on_exit = 0
-    let g:ctrlp_show_hidden = 0
-    let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\\.hg$\\.svn$\\.sass-cache$',
-                \ 'file': '\.exe$\\.so$\\.dll$\\.pyc$\\.scssc$' }
-    let g:ctrlp_mruf_relative = 1   " only MRU files in the current working directory
-
-    " On Windows use 'dir' as fallback command.
-    if has('win32')  has('win64')
-        let g:ctrlp_user_command = {
-                    \ 'types': {
-                    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                    \ },
-                    \ 'fallback': 'dir %s /-n /b /s /a-d'
-                    \ }
-    else
-        let g:ctrlp_user_command = {
-                    \ 'types': {
-                    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                    \ },
-                    \ 'fallback': 'find %s -type f'
-                    \ }
-    endif
-    call ctrlp_bdelete#init()
-endfunction
-"call CtrlpConfig()
-
-function! FZFConfig()
-    " CTRL-A CTRL-Q to select all and build quickfix list
-    function! s:build_quickfix_list(lines)
-        call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-        copen
-        cc
-    endfunction
-
-    let g:fzf_action = {
-                \ 'ctrl-q': function('s:build_quickfix_list'),
-                \ 'ctrl-t': 'tab split',
-                \ 'ctrl-x': 'split',
-                \ 'ctrl-v': 'vsplit' }
-
-    let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
-
-    command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
-
-    no <leader>pf :GitFiles --cached --others --exclude-standard<cr>
-    no <leader>ff :FZF<cr>
-    no <leader><cr> :Buffer<cr>
-    no <leader>oo :BTags<cr>
-    no <leader>og :Tags<cr>
-    no <leader>/ :Ag<cr>
-    no <leader>s :BLines<cr>
-endfunction
-call FZFConfig()
 
 function! UltiSnipsConfig()
     let g:UltiSnipsExpandTrigger = '<c-k>'
@@ -212,57 +154,25 @@ function! s:quickfixFilenames()
   return join(values(buffer_numbers))
 endfunction
 
-function! s:ag_at_project_root(keyword, replaceStr)
-    Qargs
+function! s:do_replace_on_quicklist(keyword, replaceStr)
     execute "cdo %s/" . a:keyword . "/" . a:replaceStr . "/g"
 endfunction
-command! -nargs=* GRep call s:ag_at_project_root(<f-args>)
-
-function! VimGrepperConfig()
-    let g:grepper               = {}
-    let g:grepper.tools         = ['git', 'ag', 'rg']
-    let g:grepper.jump          = 1
-    let g:grepper.next_tool     = '<tab>'
-    let g:grepper.simple_prompt = 1
-    let g:grepper.quickfix      = 1
-    let g:grepper.dir = 'repo,file'
-    no <Leader>/ :GrepperAg 
-endfunction
-" call VimGrepperConfig()
-
-function! VimTernConfig()
-    let g:tern#arguments = ["--no-port-file"]
-    no <Leader>tD   :TernDoc<cr>
-    no <Leader>tb   :TernDocBrowse<cr>
-    no <Leader>tt   :TernType<cr>
-    no <Leader>td   :TernDef<cr>
-    no <Leader>tpd  :TernDefPreview<cr>
-    no <Leader>tsd  :TernDefSplit<cr>
-    no <Leader>ttd  :TernDefTab<cr>
-    no <Leader>tr   :TernRefs<cr>
-    no <Leader>tR   :TernRename<cr>
-endfunction
-"call VimTernConfig()
-autocmd BufRead,BufNewFile *.js call VimTernConfig()
+command! -nargs=* GRep call s:do_replace_on_quicklist(<f-args>)
 
 function! VimTSCConfig()
+    let g:nvim_typescript#javascript_support=1
+    let g:nvim_typescript#vue_support=1
+    let g:nvim_typescript#type_info_on_hold=1 " set updatetime to control delay
+
     no <Leader>tD   :TSDoc<cr>
     no <Leader>tt   :TSType<cr>
     no <Leader>ttd   :TSTypeDef<cr>
-    no <Leader>td   :TSDef<cr>
+    no <Leader>td   :mark 1<cr>:TSDef<cr>
     no <Leader>tpd  :TSDefPreview<cr>
     no <Leader>tr   :TSRefs<cr>
     no <Leader>tR   :TSRename<cr>
 endfunction
-autocmd BufRead,BufNewFile *.ts call VimTSCConfig()
-
-function! s:tagbarConfig()
-    let g:tagbar_ctags_bin='jsctags'
-endfunction
-
-function! s:genTagsConfig()
-    g:gen_tags#ctags_auto_gen = 1
-endfunction
+call VimTSCConfig()
 
 function! s:easyMotionConfig()
     let g:EasyMotion_do_mapping = 0 " Disable default mappings
