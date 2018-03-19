@@ -17,6 +17,35 @@ elseif g:completeMethod == 'ycm'
     Plug 'Valloric/YouCompleteMe', {'do': './install.py --all'}
 endif
 
+
+"""""""""""""
+"  Snippets  "
+"""""""""""""
+" Group dependencies, vim-snippets depends on ultisnips
+" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+
+function! UltiSnipsConfig()
+    let g:UltiSnipsExpandTrigger = '<c-k>'
+    let g:UltiSnipsJumpForwardTrigger = '<c-k>'
+    let g:UltiSnipsJumpBackwardTrigger = '<c-i>'
+    let g:UltiSnipsEditSplit = 'horizontal'
+    if isdirectory($XDG_DATA_HOME . '/nvim/plugged/UltiSnips-ext')
+        let g:UltiSnipsSnippetsDir = $XDG_DATA_HOME . '/nvim/plugged/UltiSnips-ext/UltiSnips/'
+    endif
+endfunction
+" call UltiSnipsConfig()
+
+function! NeoSnippetConfig()
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+    " expand parameters
+    let g:neosnippet#enable_completed_snippet=1
+endfunction
+call NeoSnippetConfig()
+
 """""""""""""
 "  Sources  "
 """""""""""""
@@ -25,8 +54,7 @@ Plug 'Shougo/neco-vim' " vimscript source
 Plug 'othree/csscomplete.vim' " css completion
 
 if g:completeMethod == 'nvm'
-    Plug 'roxma/nvim-cm-tern', {'do': 'npm install'}" js completion
-    Plug 'roxma/ncm-flow' " flow completion
+    Plug 'roxma/ncm-flow', {'do': 'npm install'}" js completion
 elseif g:completeMethod == 'deoplete'
     Plug 'carlitux/deoplete-ternjs'
     Plug 'mhartington/deoplete-typescript'
@@ -39,7 +67,9 @@ endif
 
 function! s:nvmConfig()
     set shortmess+=c
-    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " inoremap <expr> <CR> (pumvisible() ? "\<c-k>\<cr>" : "\<CR>")
+    imap <expr> <CR>  (pumvisible() ?  "\<c-y>\<Plug>(expand_or_nl)" : "\<CR>")
+    imap <expr> <Plug>(expand_or_nl) (cm#completed_is_snippet() ? "\<C-k>":"\<CR>")
     " css completion via `csscomplete#CompleteCSS`
     " The `'cm_refresh_patterns'` is PCRE.
     " Be careful with `'scoping': 1` here, not all sources, especially omnifunc,

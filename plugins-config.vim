@@ -6,7 +6,13 @@ function! FZFConfig()
         cc
     endfunction
 
+    function! s:jump_to_buffer_line(lines)
+        copen
+        echo a:lines
+    endfunction
+
     let g:fzf_action = {
+                \ 'ctrl-l': function('s:jump_to_buffer_line'),
                 \ 'ctrl-q': function('s:build_quickfix_list'),
                 \ 'ctrl-t': 'tab split',
                 \ 'ctrl-x': 'split',
@@ -82,17 +88,6 @@ function! AleConfig()
 endfunction
 call AleConfig()
 
-function! UltiSnipsConfig()
-    let g:UltiSnipsExpandTrigger = '<c-k>'
-    let g:UltiSnipsJumpForwardTrigger = '<c-k>'
-    let g:UltiSnipsJumpBackwardTrigger = '<c-i>'
-    let g:UltiSnipsEditSplit = 'horizontal'
-    if isdirectory($XDG_DATA_HOME . '/nvim/plugged/UltiSnips-ext')
-        let g:UltiSnipsSnippetsDir = $XDG_DATA_HOME . '/nvim/plugged/UltiSnips-ext/UltiSnips/'
-    endif
-endfunction
-call UltiSnipsConfig()
-
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -160,9 +155,9 @@ endfunction
 command! -nargs=* GRep call s:do_replace_on_quicklist(<f-args>)
 
 function! VimTSCConfig()
-    let g:nvim_typescript#javascript_support=1
-    let g:nvim_typescript#vue_support=1
-    let g:nvim_typescript#type_info_on_hold=1 " set updatetime to control delay
+    " let g:nvim_typescript#javascript_support=1
+    " let g:nvim_typescript#vue_support=1
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
     no <Leader>tD   :TSDoc<cr>
     no <Leader>tt   :TSType<cr>
@@ -248,3 +243,10 @@ function! s:vueConfig()
     endfunction
 endfunction
 call s:vueConfig()
+
+function! s:prettierConfig()
+    let g:prettier#config#parser = 'babylon'
+    let g:prettier#autoformat = 0
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+endfunction
+" call s:prettierConfig()

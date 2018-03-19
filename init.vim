@@ -13,7 +13,7 @@ source $XDG_DATA_HOME/nvim/plugins.vim
 source $XDG_DATA_HOME/nvim/auto-complete.vim
 source $XDG_DATA_HOME/nvim/git.vim
 source $XDG_DATA_HOME/nvim/project.vim
-source $XDG_DATA_HOME/nvim/nyao-config.vim
+" source $XDG_DATA_HOME/nvim/nyao-config.vim
 
 " Add plugins to &runtimepath
 call plug#end()

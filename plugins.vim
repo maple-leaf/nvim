@@ -9,8 +9,6 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 
 Plug 'xolox/vim-session'
 
-" Group dependencies, vim-snippets depends on ultisnips
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' | Plug 'maple-leaf/UltiSnips-ext'
 Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -32,8 +30,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat'
 Plug 'sgur/vim-editorconfig'
 " XML/HTML tags navigation
-Plug 'tmhedberg/matchit'
-Plug 'jiangmiao/auto-pairs'
+Plug 'andymass/vim-matchup'
+" Plug 'jiangmiao/auto-pairs'
 
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/
@@ -55,16 +53,16 @@ Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 function! FrontEndSupport()
     Plug 'heavenshell/vim-jsdoc'
     " write html ease
-    Plug 'mattn/emmet-vim'
+    " Plug 'mattn/emmet-vim'
     Plug 'othree/html5.vim'
     " less syntax
     Plug 'groenewege/vim-less'
     " scss syntax
     Plug 'cakebaker/scss-syntax.vim'
     " react jsx support
-    Plug 'mxw/vim-jsx'
+    Plug 'chemzqm/vim-jsx-improve'
     " vue support
-    Plug 'posva/vim-vue'
+    Plug 'posva/vim-vue', { 'branch': 'performance-enhancement' }
 
     " JS syntax, supports ES6
     Plug 'othree/yajs.vim', {
