@@ -59,17 +59,18 @@ endfunction
 call NERDCommentConfig()
 
 function! AleConfig()
-    " why disable elixir linter: https://github.com/phoenixframework/phoenix/issues/1165
     let g:ale_linters = {
-                \   'javascript': ['eslint'],
-                \   'vue': ['eslint'],
-                \   'elixir': [],
+                \   'javascript': ['prettier', 'eslint'],
+                \   'vue': ['prettier', 'eslint'],
+                \   'elixir': ['mix'],
                 \   'html': ['eslint'],
                 \}
     let g:ale_linter_aliases = {
                 \ 'vue': ['html', 'javascript', 'css']
                 \ }
     let g:ale_lint_delay = 800
+    let g:ale_fix_on_save = 1
+    let g:ale_open_list = 0 " show errors list when has
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
     nmap <Leader>en <Plug>(ale_next)
@@ -155,8 +156,9 @@ endfunction
 command! -nargs=* GRep call s:do_replace_on_quicklist(<f-args>)
 
 function! VimTSCConfig()
-    " let g:nvim_typescript#javascript_support=1
-    " let g:nvim_typescript#vue_support=1
+    let g:nvim_typescript#javascript_support=1
+    let g:nvim_typescript#vue_support=1
+    let g:nvim_typescript#type_info_on_hold=1
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
     no <Leader>tD   :TSDoc<cr>
@@ -244,9 +246,12 @@ function! s:vueConfig()
 endfunction
 call s:vueConfig()
 
-function! s:prettierConfig()
-    let g:prettier#config#parser = 'babylon'
-    let g:prettier#autoformat = 0
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue Prettier
+function! s:neoformatConfig()
+    autocmd BufWritePre *.js,*.vue,*.jsx,.ts,.tsx Neoformat prettier
 endfunction
-" call s:prettierConfig()
+" call s:neoformatConfig()
+
+function! s:matchupConfig()
+    let g:matchup_matchpref_html_nolists - 1
+    let g:matchup_matchparen_deferred = 1
+endfunction
