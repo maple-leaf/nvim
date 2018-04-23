@@ -1,5 +1,5 @@
 function! FZFConfig()
-    " CTRL-A CTRL-Q to select all and build quickfix list
+    " CTRL-F CTRL-Q to select all and build quickfix list
     function! s:build_quickfix_list(lines)
         call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
         copen
@@ -18,7 +18,8 @@ function! FZFConfig()
                 \ 'ctrl-x': 'split',
                 \ 'ctrl-v': 'vsplit' }
 
-    let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+    " use f instead of a to avoid conflict with move cursor to beginning
+    let $FZF_DEFAULT_OPTS = '--bind ctrl-f:select-all'
 
     " use raw ag, should provide pattern when use
     " Augmenting Ag command using fzf#vim#with_preview function
