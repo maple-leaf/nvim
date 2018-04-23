@@ -68,24 +68,34 @@ function! AleConfig()
     let g:ale_linter_aliases = {
                 \ 'vue': ['html', 'javascript', 'css']
                 \ }
-    let g:ale_lint_delay = 800
-    let g:ale_fix_on_save = 1
-    let g:ale_open_list = 0 " show errors list when has
-    " Map movement through errors without wrapping.
-    nmap <Leader>ep <Plug>(ale_previous)
-    nmap <Leader>en <Plug>(ale_next)
-    nmap <Leader>ef <Plug>(ale_fix)
     let g:ale_fixers = {
                 \   'javascript': [
+                \       'prettier',
                 \       'eslint'
                 \   ],
                 \   'vue': [
+                \       'prettier',
                 \       'eslint'
                 \   ],
                 \   'html': [
                 \       'eslint'
                 \   ]
                 \}
+    if filereadable('.vim-ale-js-disable-prettier')
+        let g:ale_linters['javascript'] = ['eslint']
+        let g:ale_fixers['javascript'] = ['eslint']
+    endif
+
+    let g:ale_lint_delay = 800
+    let g:ale_fix_on_save = 1
+    let g:ale_open_list = 0 " show errors list when has
+    " If you use Prettier config files, you must set g:ale_javascript_prettier_use_local_config to have ALE respect them:
+    let g:ale_javascript_prettier_use_local_config = 1
+
+    " Map movement through errors without wrapping.
+    nmap <Leader>ep <Plug>(ale_previous)
+    nmap <Leader>en <Plug>(ale_next)
+    nmap <Leader>ef <Plug>(ale_fix)
 endfunction
 call AleConfig()
 
