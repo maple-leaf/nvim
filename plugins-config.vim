@@ -1,4 +1,4 @@
-function! FZFConfig()
+function! s:fZFConfig()
     " CTRL-F CTRL-Q to select all and build quickfix list
     function! s:build_quickfix_list(lines)
         call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -52,7 +52,7 @@ function! FZFConfig()
     no <leader>/ :Rag <C-R><C-W>
     no <leader>s :SearchCWord<cr>
 endfunction
-call FZFConfig()
+call s:fZFConfig()
 
 function! NERDCommentConfig()
     let g:NERDSpaceDelims = 1
@@ -62,9 +62,11 @@ call NERDCommentConfig()
 function! AleConfig()
     let g:ale_linters = {
                 \   'javascript': ['prettier', 'eslint'],
+                \   'typescript': ['prettier', 'tslint'],
                 \   'vue': ['prettier', 'eslint'],
                 \   'elixir': ['mix'],
                 \   'html': ['eslint'],
+                \   'json': ['prettier'],
                 \}
     let g:ale_linter_aliases = {
                 \ 'vue': ['html', 'javascript', 'css']
@@ -74,13 +76,15 @@ function! AleConfig()
                 \       'prettier',
                 \       'eslint'
                 \   ],
+                \   'typescript': ['prettier', 'tslint'],
                 \   'vue': [
                 \       'prettier',
                 \       'eslint'
                 \   ],
                 \   'html': [
                 \       'eslint'
-                \   ]
+                \   ],
+                \   'json': ['prettier'],
                 \}
     if filereadable('.vim-ale-js-disable-prettier')
         let g:ale_linters['javascript'] = ['eslint']
@@ -92,6 +96,7 @@ function! AleConfig()
     let g:ale_open_list = 0 " show errors list when has
     " If you use Prettier config files, you must set g:ale_javascript_prettier_use_local_config to have ALE respect them:
     let g:ale_javascript_prettier_use_local_config = 1
+    let g:ale_javascript_prettier_options = "--trailing-comma es5"
 
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
@@ -105,31 +110,18 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 function! NeoTermConfig()
-    let g:neoterm_position = 'horizontal'
     let g:neoterm_automap_keys = ',tt'
 
-    nnoremap <silent> <f10> :TREPLSendFile<cr>
-    nnoremap <silent> <f9> :TREPLSend<cr>
-    vnoremap <silent> <f9> :TREPLSend<cr>
-
-    " run set test lib
-    nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
-    nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
-    nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
-    nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
-
-    " Useful maps
-    " hide/close terminal
-    nnoremap <silent> ,th :call neoterm#close()<cr>
-    " clear terminal
-    nnoremap <silent> ,tl :call neoterm#clear()<cr>
-    " kills the current job (send a <c-c>)
-    nnoremap <silent> ,tc :call neoterm#kill()<cr>
-
-    " Git commands
-    command! -nargs=+ Tg :T git <args>
+    let g:neoterm_keep_term_open = 0
+    let g:neoterm_default_mod = 'vertical'
 endfunction
-"call NeoTermConfig()
+call NeoTermConfig()
+
+function! s:nvimuxConfig()
+    let g:nvimux_quickterm_provider = 'neoterm#new'
+    no <Leader>' :NvimuxToggleTerm<cr>
+endfunction
+call s:nvimuxConfig()
 
 function! AirlineConfig()
     let g:airline_theme='powerlineish'
@@ -265,4 +257,5 @@ endfunction
 function! s:matchupConfig()
     let g:matchup_matchpref_html_nolists - 1
     let g:matchup_matchparen_deferred = 1
+    let g:matchup_matchparen_enabled = 0
 endfunction

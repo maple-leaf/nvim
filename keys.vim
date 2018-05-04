@@ -143,3 +143,5 @@ vno <Leader>] "*p
 imap <c-g><c-g> <ESC>:q<cr>
 nmap <c-g><c-g> :q<cr>
 vmap <c-g><c-g> :q<cr>
+
+no <Leader>or :e ~/.todo.org<cr>

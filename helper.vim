@@ -47,28 +47,19 @@ endfunction
 "                There are delete because the regex `2\|3` matches the desired
 "                buffer names
 "===============================================================================
-function! DeleteMatchingBuffers(pattern)
+function! DeleteMatchingBuffers(pattern, hasBang)
     let l:bufferList = filter(range(1, bufnr('$')), 'buflisted(v:val)')
     let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
     if len(l:matchingBuffers) < 1
         echo 'No buffers found matching pattern ' . a:pattern
         return
     endif
-    exec 'bd ' . join(l:matchingBuffers, ' ')
+    if (a:hasBang)
+        execute 'bd! ' . join(l:matchingBuffers, ' ')
+    else
+        execute 'bd ' . join(l:matchingBuffers, ' ')
+    endif
 endfunction
 
-command! -nargs=1 BD call DeleteMatchingBuffers('<args>')
+command! -nargs=1 -bang BD call DeleteMatchingBuffers('<args>', <bang>0)
 
-function! FormatJSON(...)
-  let code="\"
-        \ var i = process.stdin, d = '';
-        \ i.resume();
-        \ i.setEncoding('utf8');
-        \ i.on('data', function(data) { d += data; });
-        \ i.on('end', function() {
-        \     console.log(JSON.stringify(JSON.parse(d), null, 
-        \ " . (a:0 ? a:1 ? a:1 : 2 : 2) . "));
-        \ });\""
-  execute "%! node -e " . code 
-endfunction
-nmap ,fj :<C-U>call FormatJSON(v:count)<CR>

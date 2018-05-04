@@ -6,8 +6,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim' " improved search, fuzzy search, search index and count
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
-
-Plug 'xolox/vim-session'
+Plug 'brooth/far.vim' " search and replace
 
 Plug 'w0rp/ale'
 
@@ -25,7 +24,8 @@ Plug 'maple-leaf/my-vim-templates'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'kassio/neoterm'
+Plug 'kassio/neoterm'
+Plug 'BurningEther/nvimux'
 
 Plug 'tpope/vim-repeat'
 Plug 'sgur/vim-editorconfig'
@@ -65,9 +65,10 @@ function! FrontEndSupport()
     Plug 'posva/vim-vue', { 'branch': 'performance-enhancement' }
 
     " JS syntax, supports ES6
-    Plug 'othree/yajs.vim', {
-                \   'for': ['javascript', 'vue']
-                \ }
+    " Plug 'othree/yajs.vim', {
+                " \   'for': ['javascript']
+                " \ }
+    " Plug 'flowtype/vim-flow', { 'for': ['javascript', 'vue'] }
 
     " Typescript support
     Plug 'HerringtonDarkholme/yats.vim'
@@ -88,5 +89,10 @@ function! FrontEndSupport()
     Plug 'trotzig/import-js', {
                 \ 'for': ['javascript', 'vue']
                 \}
+    Plug 'neovim/node-host'
+
+    " Wrapper on top of mdn-cli for nvim.
+    " Provides a :Mdn <search terms> command to query http://mdn.io,
+    " parse the HTML result and fill in a vertical buffer with MDN documentation
 endfunction
 call FrontEndSupport()

@@ -11,6 +11,9 @@ set showmode
 
 set cmdheight=2
 
+set splitright
+set splitbelow
+
 set cul " highlight current line
 highlight clear SignColumn      " SignColumn should match background for
 " things like vim-gitgutter, vim-signify
@@ -61,7 +64,7 @@ set background=dark
 "color solarized
 colorscheme NeoSolarized
 
-set guifont=Bitstream_Vera_Sans_Mono:h18
+" set guifont=Bitstream_Vera_Sans_Mono:h18
 
 set laststatus=2
 
@@ -152,10 +155,10 @@ function! RsyncToDev(pattern)
         :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/zsadmin/view/
     elseif a:pattern == 'hyaf'
         echo 'Rsyncing ' . a:pattern
-        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/
+        :!rsync -azcuv --relative --delete-after --exclude ".history" --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/
     elseif a:pattern == 'hyafeditor'
         echo 'Rsyncing ' . a:pattern
-        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/wireless
+        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view_wireless
     else
         echo 'Wrong target!!!!'
     endif
