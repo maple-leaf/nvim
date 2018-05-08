@@ -137,9 +137,12 @@ augroup MyAutoCommands
     "autocmd FileType go autocmd BufWritePre <buffer> Fmt
     "autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
 
-    " disable scratch preview window when select completion
-    set completeopt-=preview
+    " restore cursor position when switching buffer
+    autocmd BufEnter * normal! g`"
 augroup END
+
+" disable scratch preview window when select completion
+set completeopt-=preview
 
 " reload nvim config
 command! Reload :source ~/.config/nvim/init.vim
