@@ -65,7 +65,7 @@ function! AleConfig()
                 \   'typescript': ['prettier', 'tslint'],
                 \   'vue': ['prettier', 'eslint'],
                 \   'elixir': ['mix'],
-                \   'html': ['eslint'],
+                \   'html': [],
                 \   'json': ['prettier'],
                 \}
     let g:ale_linter_aliases = {
@@ -82,7 +82,6 @@ function! AleConfig()
                 \       'eslint'
                 \   ],
                 \   'html': [
-                \       'eslint'
                 \   ],
                 \   'json': ['prettier'],
                 \}
@@ -140,6 +139,8 @@ function! AirlineConfig()
     let g:airline#extensions#tabline#enabled = 1
     " enable/disable displaying buffers with a single tab.
     let g:airline#extensions#tabline#show_buffers = 1
+    let g:airline#extensions#tabline#fnamemod = ':p:.'
+    let g:airline#extensions#tabline#fnamecollapse = 0
 endfunction
 call AirlineConfig()
 
@@ -255,7 +256,10 @@ endfunction
 " call s:neoformatConfig()
 
 function! s:matchupConfig()
-    let g:matchup_matchpref_html_nolists - 1
     let g:matchup_matchparen_deferred = 1
-    let g:matchup_matchparen_enabled = 0
+    augroup matchup_matchparen_highlight
+        autocmd!
+        autocmd ColorScheme * hi MatchParen ctermbg=blue ctermfg=blue guibg=#0e022f guifg=#56a1ec cterm=italic gui=italic
+    augroup END
 endfunction
+call s:matchupConfig()

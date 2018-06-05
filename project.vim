@@ -25,7 +25,8 @@ function! SessionConfig()
     let g:session_autoload = 'no'
     let g:session_default_name = "last"
     no ms :SaveSession 
-    no \s :TcloseAllAndOpenSession 
+    no \s :OpenSession 
+    "no \s :TcloseAllAndOpenSession 
 endfunction
 call SessionConfig()
 

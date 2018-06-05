@@ -137,8 +137,8 @@ augroup MyAutoCommands
     "autocmd FileType go autocmd BufWritePre <buffer> Fmt
     "autocmd FileType html,xml,xhtml,css,sass,scss,less,javascript set fdm=indent | set fdl=3
 
-    " restore cursor position when switching buffer
-    autocmd BufEnter * normal! g`"
+    " restore cursor position when switching buffer, ! has problem !
+    " autocmd BufEnter * normal! g`"
 augroup END
 
 " disable scratch preview window when select completion
@@ -155,13 +155,13 @@ function! RsyncToDev(pattern)
     let l:matchingBuffers = filter(bufferList, 'bufname(v:val) =~ a:pattern')
     if a:pattern == 'zs'
         echo 'Rsyncing ' . a:pattern
-        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/zsadmin/view/
+        :T rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/zsadmin/view/
     elseif a:pattern == 'hyaf'
         echo 'Rsyncing ' . a:pattern
-        :!rsync -azcuv --relative --delete-after --exclude ".history" --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view/
+        :T rsync -azcuv --relative --delete-after --exclude ".history" --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg_wk:/service/develop/fengye/hyaf/view/
     elseif a:pattern == 'hyafeditor'
         echo 'Rsyncing ' . a:pattern
-        :!rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view_wireless
+        :T rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" --exclude "node_modules" . hlg:/service/develop/fengye/hyaf/view_wireless
     else
         echo 'Wrong target!!!!'
     endif
