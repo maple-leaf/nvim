@@ -101,4 +101,7 @@
         - 填写完后再次 `CC` 确认提交
         - 其他具体操作可按`?`显示帮助菜单，再按一次`?`隐藏
 
+- 开启terminal环境下的`Meta`快捷键映射
+    * iTerm2: preference -> profiles -> keys -> enable 'Meta' for alt
+
 - 开始你的`neovim`编码世界吧

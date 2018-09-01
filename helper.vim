@@ -33,10 +33,6 @@ function! StripTrailingWhitespace()
     call cursor(l, c)
 endfunction
 
-function! Rsync()
-    !rsync -azcuv --relative --delete-after --exclude ".sync" --exclude ".git" . hlg:/service/develop/fengye/zsadmin/view/
-endfunction
-
 "===============================================================================
 " Author: JarrodCTaylor
 " Source: https://github.com/JarrodCTaylor/dotfiles/blob/master/vim/functions/delete-regex-buffers.vim
@@ -63,3 +59,16 @@ endfunction
 
 command! -nargs=1 -bang BD call DeleteMatchingBuffers('<args>', <bang>0)
 
+" 新开tab显示命令执行的结果
+" Examples:
+" TabMessage highlight
+" TabMessage !git stash show -p stash@{0}
+function! TabMessage(cmd)
+  redir => message
+  silent execute a:cmd
+  redir END
+  tabnew
+  silent put=message
+  set nomodified
+endfunction
+command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)

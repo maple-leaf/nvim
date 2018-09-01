@@ -61,9 +61,9 @@ call NERDCommentConfig()
 
 function! AleConfig()
     let g:ale_linters = {
-                \   'javascript': ['prettier', 'eslint'],
-                \   'typescript': ['prettier', 'tslint'],
-                \   'vue': ['prettier', 'eslint'],
+                \   'javascript': ['eslint'],
+                \   'typescript': ['tslint'],
+                \   'vue': ['eslint'],
                 \   'elixir': ['mix'],
                 \   'html': [],
                 \   'json': ['prettier'],
@@ -73,29 +73,27 @@ function! AleConfig()
                 \ }
     let g:ale_fixers = {
                 \   'javascript': [
-                \       'prettier',
                 \       'eslint'
                 \   ],
-                \   'typescript': ['prettier', 'tslint'],
+                \   'typescript': ['tslint'],
                 \   'vue': [
-                \       'prettier',
                 \       'eslint'
                 \   ],
                 \   'html': [
                 \   ],
                 \   'json': ['prettier'],
                 \}
-    if filereadable('.vim-ale-js-disable-prettier')
-        let g:ale_linters['javascript'] = ['eslint']
-        let g:ale_fixers['javascript'] = ['eslint']
-    endif
+    " if filereadable('.vim-disable-prettier')
+        " let g:ale_linters['javascript'] = ['eslint']
+        " let g:ale_fixers['javascript'] = ['eslint']
+    " endif
 
     let g:ale_lint_delay = 800
     let g:ale_fix_on_save = 1
     let g:ale_open_list = 0 " show errors list when has
     " If you use Prettier config files, you must set g:ale_javascript_prettier_use_local_config to have ALE respect them:
-    let g:ale_javascript_prettier_use_local_config = 1
-    let g:ale_javascript_prettier_options = "--trailing-comma es5"
+    " let g:ale_javascript_prettier_use_local_config = 1
+    " let g:ale_javascript_prettier_options = "--trailing-comma es5"
 
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
@@ -263,3 +261,8 @@ function! s:matchupConfig()
     augroup END
 endfunction
 call s:matchupConfig()
+
+function! s:vimGutentagsConfig()
+    let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
+endfunction
+call s:vimGutentagsConfig()

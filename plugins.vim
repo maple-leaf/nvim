@@ -12,11 +12,11 @@ Plug 'w0rp/ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+set rtp+=~/.fzf_browser/vim " file manager
 
 Plug 'danro/rename.vim'
 " Produce increasing/decreasing columns of numbers, dates, or daynames
 Plug 'iiey/visincr'
-Plug 'ipod825/vim-netranger'
 
 Plug 'tpope/vim-surround'
 Plug 'aperezdc/vim-template'
@@ -40,7 +40,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Konfekt/FastFold'
 
 " format code
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
 " Langs support
 Plug 'fatih/vim-go'
@@ -72,7 +72,8 @@ function! FrontEndSupport()
 
     " Typescript support
     Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'mhartington/nvim-typescript'
+    Plug 'mhartington/nvim-typescript', { 'commit': '70e36b80113c2d84663b0f86885320022943dd51' }
+    " Plug 'mhartington/nvim-typescript', { 'do': './install' }
 
     " Better indentation
     Plug 'gavocanov/vim-js-indent', {
@@ -90,6 +91,8 @@ function! FrontEndSupport()
                 \ 'for': ['javascript', 'vue']
                 \}
     Plug 'neovim/node-host'
+
+    Plug 'retorillo/istanbul.vim'
 
     " Wrapper on top of mdn-cli for nvim.
     " Provides a :Mdn <search terms> command to query http://mdn.io,

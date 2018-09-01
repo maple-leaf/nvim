@@ -9,6 +9,7 @@ let g:completeMethod = 'nvm' " nvm, deoplete, ycm
 """"""""""""""""""""""""
 
 if g:completeMethod == 'nvm'
+    " TODO: upgrade to https://github.com/ncm2/ncm2
     Plug 'roxma/nvim-completion-manager'
 elseif g:completeMethod == 'deoplete'
     " if encounter `failed to load python host`, see https://github.com/Shougo/deoplete.nvim/issues/31
