@@ -8,7 +8,6 @@ let mapleader = "\<Space>"
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.config/nvim/plugged')
 
-
 " add or remove your bundles here:
 source $XDG_DATA_HOME/nvim/plugins.vim
 source $XDG_DATA_HOME/nvim/auto-complete.vim
