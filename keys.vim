@@ -61,7 +61,7 @@ function! MapWindowCtrl()
     " Close the current window
     noremap <silent> <leader>wc :close<cr>
     " Maximum the current window
-    noremap <silent> <leader>wo :only<cr>
+    noremap <silent> <leader>wo :call MaximizeToggle()<cr>
     " balance all windows 
     noremap <silent> <leader>wb :wincmd <C-=><cr>
     " Move the current window to the right of the main Vim window
