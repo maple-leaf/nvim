@@ -19,7 +19,7 @@ function! s:fZFConfig()
                 \ 'ctrl-v': 'vsplit' }
 
     " use f instead of a to avoid conflict with move cursor to beginning
-    let $FZF_DEFAULT_OPTS = '--bind ctrl-f:select-all'
+    let $FZF_DEFAULT_OPTS = '--bind ctrl-f:toggle-all'
 
     " use raw ag, should provide pattern when use
     " Augmenting Ag command using fzf#vim#with_preview function
@@ -139,6 +139,10 @@ function! AirlineConfig()
     let g:airline#extensions#tabline#show_buffers = 1
     let g:airline#extensions#tabline#fnamemod = ':p:.'
     let g:airline#extensions#tabline#fnamecollapse = 0
+
+
+    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#gutentags#enabled = 1
 endfunction
 call AirlineConfig()
 
@@ -161,6 +165,7 @@ function! VimTSCConfig()
     let g:nvim_typescript#javascript_support=1
     let g:nvim_typescript#vue_support=1
     let g:nvim_typescript#type_info_on_hold=1
+    let g:nvim_typescript#diagnosticsEnable=0
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
     no <Leader>tD   :TSDoc<cr>
@@ -266,3 +271,21 @@ function! s:vimGutentagsConfig()
     let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor", ".git", "node_modules", "*.vim/bundle/*"]
 endfunction
 call s:vimGutentagsConfig()
+
+function! s:jsDocConfig()
+    let g:jsdoc_input_descritions = 1
+    let g:jsdoc_allow_input_prompt = 1
+    let g:jsdoc_access_descriptions = 2
+    let g:jsdoc_underscore_private = 1
+    let g:jsdoc_param_description_separator = ' - '
+    let g:jsdoc_enable_es6 = 1
+
+    no <c-d> <esc>:JsDoc<cr>
+    ino <c-d> <esc>:JsDoc<cr>
+endfunction
+call s:jsDocConfig()
+
+function! s:echoDocConfig()
+    let g:echodoc#enable_at_startup = 1
+endfunction
+call s:echoDocConfig()

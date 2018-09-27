@@ -36,8 +36,12 @@ Plug 'andymass/vim-matchup'
 " generate tags
 " better ctags: http://docs.ctags.io/en/latest/
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 
 Plug 'Konfekt/FastFold'
+
+" Displays function signatures from completions in the command line
+Plug 'Shougo/echodoc.vim'
 
 " format code
 " Plug 'sbdchd/neoformat'
@@ -65,6 +69,7 @@ function! FrontEndSupport()
     Plug 'posva/vim-vue', { 'branch': 'performance-enhancement' }
 
     " JS syntax, supports ES6
+    " may make vim-vue slow https://github.com/posva/vim-vue/issues/95#issuecomment-374108025
     " Plug 'othree/yajs.vim', {
                 " \   'for': ['javascript']
                 " \ }
@@ -72,8 +77,7 @@ function! FrontEndSupport()
 
     " Typescript support
     Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'mhartington/nvim-typescript', { 'commit': '70e36b80113c2d84663b0f86885320022943dd51' }
-    " Plug 'mhartington/nvim-typescript', { 'do': './install' }
+    Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 
     " Better indentation
     Plug 'gavocanov/vim-js-indent', {

@@ -20,7 +20,8 @@ call s:fugittiveConfig()
 
 function! s:vimgitConfig()
     let g:magit_discard_untracked_do_delete = 1
-    autocmd User VimagitEnterCommit bd! | T 'git-cz'
+    let g:magit_commit_title_limit=100
+    " autocmd User VimagitEnterCommit bd! | T 'git-cz'
 endfunction
 call s:vimgitConfig()
 

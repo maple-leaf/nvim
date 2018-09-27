@@ -61,7 +61,8 @@ function! MapWindowCtrl()
     " Close the current window
     noremap <silent> <leader>wc :close<cr>
     " Maximum the current window
-    noremap <silent> <leader>wo :call MaximizeToggle()<cr>
+    " noremap <silent> <leader>wo :call MaximizeToggle()<cr> ---> has bug
+    noremap <silent> <leader>wo :only<cr>
     " balance all windows 
     noremap <silent> <leader>wb :wincmd <C-=><cr>
     " Move the current window to the right of the main Vim window
@@ -145,3 +146,6 @@ nmap <c-g><c-g> :q<cr>
 vmap <c-g><c-g> :q<cr>
 
 no <Leader>or :e ~/.todo.org<cr>
+
+" move cursor to end of line
+imap <c-l> <ESC>g$a
