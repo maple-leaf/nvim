@@ -56,6 +56,8 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set updatetime=1000
 
+set signcolumn=yes
+
 " detect which style of file
 let g:C_Styles = { '*.c,*.h' : 'C', '*.cc,*.cpp,*.hh' : 'CPP' }
 
@@ -170,3 +172,9 @@ endfunction
 command! -nargs=1 Rsync call RsyncToDev('<args>')
 
 command! FixSyntax :syntax sync fromstart " sometimes vim can't highlight syntax correctly
+
+augroup VueAuto
+    autocmd!
+
+    autocmd CursorHold,CursorHoldI *.vue FixSyntax
+augroup END
