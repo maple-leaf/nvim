@@ -1,27 +1,48 @@
 if empty($XDG_DATA_HOME)
 	let $XDG_DATA_HOME = $HOME . '/.config'
 endif
-source  $XDG_DATA_HOME/nvim/helper.vim
 
 let mapleader = "\<Space>"
+
+source $XDG_DATA_HOME/nvim/setting.vim
+
+function! s:checkPlug()
+	let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+
+	if !filereadable(vimplug_exists)
+	  if !executable("curl")
+	    echoerr "You have to install curl or first install vim-plug yourself!"
+	    execute "q!"
+	  endif
+	  echo "Installing Vim-Plug..."
+	  echo ""
+	  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	  let g:not_finish_vimplug = "yes"
+
+	  autocmd VimEnter * PlugInstall
+	endif
+endfunction
+
+call s:checkPlug()
+
+" Required:
+call plug#begin(expand('~/.vim/plugged'))
 
 " curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin('~/.config/nvim/plugged')
 
 
-" add or remove your bundles here:
-source $XDG_DATA_HOME/nvim/plugins.vim
-source $XDG_DATA_HOME/nvim/auto-complete.vim
-source $XDG_DATA_HOME/nvim/git.vim
-source $XDG_DATA_HOME/nvim/project.vim
-source $XDG_DATA_HOME/nvim/org.vim
+source $XDG_DATA_HOME/nvim/base.vim
+source $XDG_DATA_HOME/nvim/base/appearance.vim
+
+source $XDG_DATA_HOME/nvim/langs/js.vim
+source $XDG_DATA_HOME/nvim/langs/ts.vim
+source $XDG_DATA_HOME/nvim/langs/vue.vim
 
 " Add plugins to &runtimepath
 call plug#end()
 
-filetype plugin indent on    " required
+"turn on that syntax highlighting
+syntax on
 
-source $XDG_DATA_HOME/nvim/plugins-config.vim
-source  $XDG_DATA_HOME/nvim/settings.vim
-source  $XDG_DATA_HOME/nvim/keys.vim
-
+source $XDG_DATA_HOME/nvim/base/keys.vim

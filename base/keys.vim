@@ -1,6 +1,3 @@
-""""""""""""""""""""""""""""""""""""""""
-" normal mapping
-""""""""""""""""""""""""""""""""""""""""" 
 " movement
 " move current up <a-k>
 no ˚ <PageUp>
@@ -29,7 +26,6 @@ call MapTabCtrl()
 nmap  <leader>cd :lcd %:h<cr>
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
-
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
@@ -61,7 +57,6 @@ function! MapWindowCtrl()
     " Close the current window
     noremap <silent> <leader>wc :close<cr>
     " Maximum the current window
-    " noremap <silent> <leader>wo :call MaximizeToggle()<cr> ---> has bug
     noremap <silent> <leader>wo :only<cr>
     " balance all windows 
     noremap <silent> <leader>wb :wincmd <C-=><cr>
@@ -98,7 +93,6 @@ endfunction
 call MapFoldCtrl()
 
 ino ;; <ESC>
-ino jj <ESC>
 vno ;; <ESC>
 nno ;; <ESC>
 
@@ -106,7 +100,7 @@ nno ;; <ESC>
 ino <c-j> <c-x><c-f>
 " display all lines with keyword under cursor
 " and ask which one to jump to
-"nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " some mappings for copying the file name to the clipboard. 
 " Convert slashes to backslashes for Windows.
@@ -133,19 +127,12 @@ cmap w!! w !sudo tee > /dev/null %
 
 no <Leader><tab> :b#<cr>
 
+" netrw
+no <Leader>e :Lexplore<cr>
+
 " copy from and paste to clipboard
 no <Leader>[ "*y
 vno <Leader>[ "*y
 imap <c-v> <c-r>*
 no <Leader>] "*p
 vno <Leader>] "*p
-
-" use double <ctrl-g> to quit window
-imap <c-g><c-g> <ESC>:q<cr>
-nmap <c-g><c-g> :q<cr>
-vmap <c-g><c-g> :q<cr>
-
-no <Leader>or :e ~/.todo.org<cr>
-
-" move cursor to end of line
-imap <c-l> <ESC>g$a
