@@ -1,3 +1,12 @@
+" Theme
+Plug 'flazz/vim-colorschemes'
+
+function! s:setupTheme()
+    set background=dark
+    color solarized
+endfunction
+
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -46,3 +55,9 @@ function! s:airlineConfig()
 endfunction
 
 call s:airlineConfig()
+
+
+augroup appearance
+    autocmd!
+    autocmd VimEnter * call s:setupTheme()
+augroup END

@@ -1,5 +1,41 @@
-" Theme
-Plug 'flazz/vim-colorschemes'
+" Tagbar
+Plug 'majutsushi/tagbar'
+
+function! s:tagbarConfig()
+    let g:tagbar_type_typescript = {
+		\ 'ctagstype': 'typescript',
+		\ 'kinds': [
+		\ 'c:classes',
+		\ 'n:modules',
+		\ 'f:functions',
+		\ 'v:variables',
+		\ 'v:varlambdas',
+		\ 'm:members',
+		\ 'i:interfaces',
+		\ 'e:enums',
+		\ ]
+		\ }
+endfunction
+
+" Comment
+Plug 'scrooloose/nerdcommenter'
+
+function! s:comentConfig()
+    " Add spaces after comment delimiters by default
+    let g:NERDSpaceDelims = 1
+
+    " Use compact syntax for prettified multi-line comments
+    let g:NERDCompactSexyComs = 1
+
+    " Allow commenting and inverting empty lines (useful when commenting a region)
+    let g:NERDCommentEmptyLines = 1
+
+    " Enable trimming of trailing whitespace when uncommenting
+    let g:NERDTrimTrailingWhitespace = 1
+
+    " Enable NERDCommenterToggle to check all selected lines is commented or not 
+    let g:NERDToggleCheckAllLines = 1
+endfunction
 
 " Files
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -62,15 +98,13 @@ function! s:deniteConfig()
     "no <leader>pf :Denite file/rec<cr>
 endfunction
 
-function! s:setupTheme()
-    set background=dark
-    color solarized
-endfunction
-
 
 function! s:baseSetup()
-    call s:setupTheme()
+    call s:tagbarConfig()
     call s:fzfConfig()
     call s:deniteConfig()
 endfunction
-autocmd! VimEnter * call s:baseSetup()
+augroup baseConfig
+    autocmd!
+    autocmd VimEnter * call s:baseSetup()
+augroup END

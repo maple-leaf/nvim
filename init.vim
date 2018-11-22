@@ -1,9 +1,10 @@
 if empty($XDG_DATA_HOME)
-	let $XDG_DATA_HOME = $HOME . '/.config'
+    let $XDG_DATA_HOME = $HOME . '/.config'
 endif
 
 let mapleader = "\<Space>"
 
+source $XDG_DATA_HOME/nvim/helper.vim
 source $XDG_DATA_HOME/nvim/setting.vim
 
 function! s:checkPlug()
@@ -28,12 +29,9 @@ call s:checkPlug()
 " Required:
 call plug#begin(expand('~/.vim/plugged'))
 
-" curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-call plug#begin('~/.config/nvim/plugged')
-
-
 source $XDG_DATA_HOME/nvim/base.vim
 source $XDG_DATA_HOME/nvim/base/appearance.vim
+source $XDG_DATA_HOME/nvim/base/searchAndReplace.vim
 
 source $XDG_DATA_HOME/nvim/langs/js.vim
 source $XDG_DATA_HOME/nvim/langs/ts.vim

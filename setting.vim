@@ -2,3 +2,5 @@
 set signcolumn=yes
 
 set relativenumber
+
+set shiftwidth=4
