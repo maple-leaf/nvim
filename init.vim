@@ -27,11 +27,21 @@ endfunction
 call s:checkPlug()
 
 " Required:
-call plug#begin(expand('~/.vim/plugged'))
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 source $XDG_DATA_HOME/nvim/base.vim
+source $XDG_DATA_HOME/nvim/base/file-explorer.vim
 source $XDG_DATA_HOME/nvim/base/appearance.vim
 source $XDG_DATA_HOME/nvim/base/searchAndReplace.vim
+source $XDG_DATA_HOME/nvim/base/terminal.vim
+source $XDG_DATA_HOME/nvim/base/tags.vim
+source $XDG_DATA_HOME/nvim/base/git.vim
+source $XDG_DATA_HOME/nvim/base/test.vim
+" Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
+source $XDG_DATA_HOME/nvim/base/ale.vim
+source $XDG_DATA_HOME/nvim/base/code-format.vim
+source $XDG_DATA_HOME/nvim/base/auto-complete.vim
+source $XDG_DATA_HOME/nvim/base/task.vim
 
 source $XDG_DATA_HOME/nvim/langs/js.vim
 source $XDG_DATA_HOME/nvim/langs/ts.vim
@@ -39,8 +49,5 @@ source $XDG_DATA_HOME/nvim/langs/vue.vim
 
 " Add plugins to &runtimepath
 call plug#end()
-
-"turn on that syntax highlighting
-syntax on
 
 source $XDG_DATA_HOME/nvim/base/keys.vim

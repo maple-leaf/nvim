@@ -100,7 +100,7 @@ nno ;; <ESC>
 ino <c-j> <c-x><c-f>
 " display all lines with keyword under cursor
 " and ask which one to jump to
-nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+"nmap <Leader>sw [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
 " some mappings for copying the file name to the clipboard. 
 " Convert slashes to backslashes for Windows.
@@ -128,7 +128,7 @@ cmap w!! w !sudo tee > /dev/null %
 no <Leader><tab> :b#<cr>
 
 " netrw
-no <Leader>e :Lexplore<cr>
+"no <Leader>e :Lexplore<cr>
 
 " copy from and paste to clipboard
 no <Leader>[ "*y
@@ -136,3 +136,6 @@ vno <Leader>[ "*y
 imap <c-v> <c-r>*
 no <Leader>] "*p
 vno <Leader>] "*p
+
+" terminal
+tnoremap <Esc> <C-\><C-n>
