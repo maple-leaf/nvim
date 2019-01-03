@@ -9,9 +9,6 @@ function! s:setupTheme()
 endfunction
 
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 function! s:airlineConfig()
     let g:airline_theme = 'powerlineish'
     let g:airline#extensions#syntastic#enabled = 1
@@ -70,8 +67,13 @@ function! s:airlineConfig()
                 \ }
 endfunction
 
-call s:airlineConfig()
+" airline will cause performance issue
+function! s:enableAirline()
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 
+    call s:airlineConfig()
+endfunction
 
 augroup appearance
     autocmd!

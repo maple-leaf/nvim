@@ -12,6 +12,7 @@ function! s:aleConfig()
     let g:ale_linter_aliases = {
                 \ 'vue': ['html', 'javascript', 'css']
                 \ }
+    " prettier dont work well as fixer, use autoformat instead
     let g:ale_fixers = {
                 \   'javascript': [
                 \       'eslint',
@@ -22,7 +23,7 @@ function! s:aleConfig()
                 \   ],
                 \   'html': [
                 \   ],
-                \   'json': ['prettier'],
+                \   'json': [],
                 \}
     " if filereadable('.vim-disable-prettier')
         " let g:ale_linters['javascript'] = ['eslint']

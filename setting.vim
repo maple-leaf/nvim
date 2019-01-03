@@ -8,10 +8,7 @@ set nohls " dont highlight search keyword
 
 set relativenumber
 
-set autochdir " file completion
-
 set autoindent                  " Indent at the same level of the previous line
-set smartindent
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
@@ -66,5 +63,5 @@ augroup better_defaults
     autocmd!
     " Remove trailing whitespaces and ^M chars
     autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml,html,vue.tsx,ts,jsx,typescript autocmd BufWritePre <buffer> if !exists('g:keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
-    autocmd FileType help no q :bd<cr>
+    autocmd FileType help no <buffer> q :bd<cr>
 augroup end
