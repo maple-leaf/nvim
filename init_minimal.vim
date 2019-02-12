@@ -1,18 +1,15 @@
-"Plug 'ncm2/ncm2'
-
 " For async completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/echodoc.vim'
 
 function! s:autoCompleteConfig()
     let g:deoplete#enable_at_startup = 1
-
-	" echodoc not working correctly, do it myself
     "let g:echodoc#enable_at_startup = 1
+
     augroup autoComplete
         autocmd!
-        autocmd CompleteDone,CursorMovedI * call s:on_complete_done()
-		autocmd InsertLeave * call s:on_insert_leave()
+        autocmd CompleteDone * call s:on_complete_done()
+        "autocmd InsertLeave * call s:on_insert_leave()
     augroup END
 endfunction
 
@@ -30,10 +27,25 @@ call s:cmdlineComplete()
 function! s:on_complete_done() abort
     let item = get(v:, 'completed_item', {})
     if type(item) == 4
-		echo get(item, 'menu', '')
+        echom get(item, 'menu')
     endif
 endfunction
 
-function! s:on_insert_leave() abort
-	echo ''
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+
+function! s:tsConfig()
+    let g:nvim_typescript#javascript_support = 1
+    let g:nvim_typescript#vue_support = 1
+    let g:nvim_typescript#diagnostics_enable = 0
+    augroup tsAuto
+	autocmd!
+	autocmd BufEnter *.js,*.ts,*.tsx,*.jsx,*.vue call s:tsKeys()
+    augroup END
+endfunction
+call s:tsConfig()
+
+function! s:tsKeys()
+    no gd :TSDef<cr>
+    no gh :TSType<cr>
 endfunction

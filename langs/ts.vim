@@ -4,7 +4,6 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 function! s:tsConfig()
     let g:nvim_typescript#javascript_support = 1
     let g:nvim_typescript#vue_support = 1
-    "let g:nvim_typescript#signature_complete = 1
     let g:nvim_typescript#diagnostics_enable = 0
     augroup tsAuto
 	autocmd!

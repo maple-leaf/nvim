@@ -1,9 +1,11 @@
+" yajs and vim-js-indent will make vim unreponse when type ';<enter>'
 " JS syntax, supports ES6
-Plug 'othree/yajs.vim', {
-            \   'for': ['javascript', 'vue']
-            \ }
+"Plug 'othree/yajs.vim', {
+            "\   'for': ['javascript', 'vue']
+            "\ }
+" Plug 'jason0x43/vim-js-indent'
+
 Plug 'Quramy/vim-js-pretty-template'
-Plug 'jason0x43/vim-js-indent'
 Plug 'heavenshell/vim-jsdoc'
 
 function! s:jsDocConfig()

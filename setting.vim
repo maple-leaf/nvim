@@ -20,6 +20,7 @@ set fdm=indent                  " set fold method
 " status bar
 set cmdheight=2
 set laststatus=2
+set noshowmode
 
 set ignorecase    " Case insensitive search
 set smartcase     " Case sensitive when uppercase present
@@ -28,6 +29,8 @@ set smartcase     " Case sensitive when uppercase present
 set helplang="en,zh-cn"
 set fileencodings=utf-8,chinese,latin-1
 set fileformat=unix
+" language for message on cmd line
+lan mes en_US.utf-8
 
 "turn on that syntax highlighting
 syntax on
