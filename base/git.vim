@@ -18,15 +18,23 @@ function! s:fugittiveConfig()
 endfunction
 call s:fugittiveConfig()
 
-function! s:vimgitConfig()
+function! ShowMagit()
+    let s:status = execute("!git status -sb")
+    if s:status =~ "package-lock.json"
+        " dont show diff when has large diffs to prevent vim freeze
+        " use zo to view diff
+        let g:magit_default_show_all_files=0
+    else
+        let g:magit_default_show_all_files=1
+    endif
+    MagitOnly
+endfunction
+
+function! s:magitConfig()
     let g:magit_discard_untracked_do_delete = 1
     let g:magit_commit_title_limit=100
     " autocmd User VimagitEnterCommit bd! | T 'git-cz'
-endfunction
-call s:vimgitConfig()
-
-function! s:magitConfig()
-    nno <Leader>ma :MagitOnly<cr>
+    nno <Leader>ma :call ShowMagit()<cr>
 endfunction
 call s:magitConfig()
 
