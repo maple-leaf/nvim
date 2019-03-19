@@ -18,7 +18,7 @@ set fdm=indent                  " set fold method
 "set fdm=syntax                  " set fold method, this will make switching large js buffer(more than 900 lines) laggy when using 'othree/yajs.vim' plugin
 
 " status bar
-set cmdheight=2
+set cmdheight=3
 set laststatus=2
 set noshowmode
 

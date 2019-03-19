@@ -42,7 +42,8 @@ source $XDG_DATA_HOME/nvim/base/test.vim
 " Asynchronous linting/fixing for Vim and Language Server Protocol (LSP) integration
 source $XDG_DATA_HOME/nvim/base/ale.vim
 source $XDG_DATA_HOME/nvim/base/code-format.vim
-source $XDG_DATA_HOME/nvim/base/auto-complete.vim
+"source $XDG_DATA_HOME/nvim/base/auto-complete.vim
+source $XDG_DATA_HOME/nvim/base/auto-complete-coc.vim
 source $XDG_DATA_HOME/nvim/base/task.vim
 
 source $XDG_DATA_HOME/nvim/langs/js.vim
