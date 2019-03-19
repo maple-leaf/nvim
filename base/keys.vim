@@ -93,7 +93,6 @@ endfunction
 call MapFoldCtrl()
 
 ino jk <ESC>
-vno jk <ESC>
 
 " filename completion
 ino <c-j> <c-x><c-f>
