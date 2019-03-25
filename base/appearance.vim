@@ -1,20 +1,13 @@
 " Theme
 Plug 'flazz/vim-colorschemes'
-
-function! s:setupTheme()
-    " enable true color support on terminal
-    set termguicolors
-    set background=light
-    color solarized8_light
-endfunction
-
+Plug 'arcticicestudio/nord-vim'
 
 function! s:airlineConfig()
     let g:airline_theme = 'powerlineish'
-    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#syntastic#enabled = 0
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 0
     let g:airline#extensions#gutentags#enabled = 1
     let g:airline_skip_empty_sections = 1
 
@@ -59,6 +52,26 @@ function! s:airlineConfig()
     let g:airline#extensions#tabline#fnamemod = ':p:.'
     let g:airline#extensions#tabline#fnamecollapse = 0
 
+    " reduce ariline space of each section
+    let g:airline_mode_map = {
+                \ '__' : '-',
+                \ 'c'  : 'C',
+                \ 'i'  : 'I',
+                \ 'ic' : 'I',
+                \ 'ix' : 'I',
+                \ 'n'  : 'N',
+                \ 'ni' : 'N',
+                \ 'no' : 'N',
+                \ 'R'  : 'R',
+                \ 'Rv' : 'R',
+                \ 's'  : 'S',
+                \ 'S'  : 'S',
+                \ '' : 'S',
+                \ 't'  : 'T',
+                \ 'v'  : 'V',
+                \ 'V'  : 'V',
+                \ '' : 'V',
+                \ }
     let g:airline#extensions#default#section_truncate_width = {
                 \ 'a': 80,
                 \ 'x': 80,
@@ -74,8 +87,18 @@ function! s:enableAirline()
 
     call s:airlineConfig()
 endfunction
+call s:enableAirline()
+
+function! s:setup()
+    " enable true color support on terminal
+    set termguicolors
+    set background=dark
+    color nord
+
+    let g:airline_section_z = airline#section#create(['windowswap', 'obsession', 'linenr', '/%L', g:airline_symbols.space.'%c'])
+endfunction
 
 augroup appearance
     autocmd!
-    autocmd VimEnter * call s:setupTheme()
+    autocmd VimEnter * call s:setup()
 augroup END
