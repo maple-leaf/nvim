@@ -38,7 +38,11 @@ function! s:magitConfig()
 endfunction
 call s:magitConfig()
 
-" custom git operation
+
+
+""""""""""""""""""""""""""
+"  custom git operation  "
+""""""""""""""""""""""""""
 
 " git branch
 function! s:open_branch_fzf(line)
