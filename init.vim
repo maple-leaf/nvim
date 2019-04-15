@@ -51,6 +51,7 @@ source $XDG_DATA_HOME/nvim/langs/js.vim
 source $XDG_DATA_HOME/nvim/langs/ts.vim
 source $XDG_DATA_HOME/nvim/langs/vue.vim
 source $XDG_DATA_HOME/nvim/langs/go.vim
+source $XDG_DATA_HOME/nvim/langs/markdown.vim
 
 source $XDG_DATA_HOME/nvim/base/keys.vim
 
