@@ -26,9 +26,11 @@ function! s:fzfConfig()
     " https://github.com/junegunn/fzf/wiki/Color-schemes#solarized-light
     let s:fzf_color_dark = ['--color', 'dark,hl:33,hl+:37,fg+:235,bg+:136,fg+:254', '--color', 'info:254,prompt:37,spinner:108,pointer:235,marker:235']
     let s:fzf_color_light = ['--color', 'fg:166,bg:110,hl:33,fg+:241,bg+:221,hl+:33', '--color', 'info:33,prompt:33,pointer:166,marker:166,spinner:33']
+
     let s:fzf_preview_defaults = fzf#vim#with_preview()
     "let s:fzf_preview_options = s:fzf_color_light . ' --preview "' . $XDG_DATA_HOME . '/nvim/fzf-preview.sh {}" --preview-window right:50'
-    let s:fzf_preview_options = s:fzf_color_light + s:fzf_preview_defaults['options']
+    "let s:fzf_preview_options = s:fzf_color_nord + s:fzf_preview_defaults['options'] + ['--delimiter=:', '--nth=4..']
+    let s:fzf_preview_options = s:fzf_color_dark
 
     " use f instead of a to avoid conflict with move cursor to beginning
     let $FZF_DEFAULT_OPTS = '--bind ctrl-f:toggle-all'
@@ -48,6 +50,7 @@ function! s:fzfConfig()
                 "\                 <bang>0 ? fzf#vim#with_preview('up:60%')
                 "\                         : fzf#vim#with_preview('right:50%', '', '--color fg:-1,bg:-1,hl:33'),
                 "\                 <bang>0)
+    " escaped string with double quote and backslash -> :Rag "\(\'text\'\)"
     command! -bang -nargs=* Rag
                 \ call fzf#vim#ag_raw(<q-args>, {'options': s:fzf_preview_options})
 
@@ -78,7 +81,8 @@ endfunction
 function! s:defx_key_mapping() abort
     " Define mappings
     nnoremap <silent><buffer><expr> <CR>
-                \ defx#do_action('open')
+                \ defx#is_directory() ? defx#do_action('open') :
+                \ defx#do_action('multi', ['drop', 'quit'])
     nnoremap <silent><buffer><expr> c
                 \ defx#do_action('copy')
     nnoremap <silent><buffer><expr> m
@@ -86,7 +90,8 @@ function! s:defx_key_mapping() abort
     nnoremap <silent><buffer><expr> p
                 \ defx#do_action('paste')
     nnoremap <silent><buffer><expr> l
-                \ defx#do_action('open')
+                \ defx#is_directory() ? defx#do_action('open') :
+                \ defx#do_action('multi', ['drop', 'quit'])
     nnoremap <silent><buffer><expr> E
                 \ defx#do_action('open', 'vsplit')
     nnoremap <silent><buffer><expr> P

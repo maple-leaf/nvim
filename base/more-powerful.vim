@@ -15,3 +15,8 @@ endfunction
 
 command! DrawEnable call s:drawEnable()
 command! DrawDisable call s:drawDisable()
+
+" Auto close parentheses and repeat by dot dot dot...
+" disable for issue with 'yats' plugin
+" check issue: https://github.com/cohama/lexima.vim/issues/84
+"Plug 'cohama/lexima.vim'

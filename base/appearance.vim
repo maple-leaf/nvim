@@ -1,9 +1,8 @@
 " Theme
 Plug 'flazz/vim-colorschemes'
-Plug 'arcticicestudio/nord-vim'
 
-function! s:airlineConfig()
-    let g:airline_theme = 'powerlineish'
+function! AirlineConfig()
+    "let g:airline_theme = 'powerlineish'
     let g:airline#extensions#syntastic#enabled = 0
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tabline#enabled = 1
@@ -85,7 +84,7 @@ function! s:enableAirline()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
-    call s:airlineConfig()
+    call AirlineConfig()
 endfunction
 call s:enableAirline()
 
@@ -93,9 +92,12 @@ function! s:setup()
     " enable true color support on terminal
     set termguicolors
     set background=dark
-    color nord
+    color solarized8_dark
 
     let g:airline_section_z = airline#section#create(['windowswap', 'obsession', 'linenr', '/%L', g:airline_symbols.space.'%c'])
+    " integrate with coc.nvim
+    let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+    let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 endfunction
 
 augroup appearance

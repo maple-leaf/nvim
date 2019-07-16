@@ -4,7 +4,7 @@ Plug 'liuchengxu/vista.vim'
 
 function! s:guntenttagsConfig()
     " respect common ignore provided by ag
-    let g:gutentags_file_list_command = 'ag -l'
+    let g:gutentags_file_list_command = 'git ls-files'
 endfunction
 
 call s:guntenttagsConfig()

@@ -1,51 +1,32 @@
-" For async completion
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/echodoc.vim'
+if empty($XDG_DATA_HOME)
+    let $XDG_DATA_HOME = $HOME . '/.config'
+endif
 
-function! s:autoCompleteConfig()
-    let g:deoplete#enable_at_startup = 1
-    "let g:echodoc#enable_at_startup = 1
+let mapleader = "\<Space>"
 
-    augroup autoComplete
-        autocmd!
-        autocmd CompleteDone * call s:on_complete_done()
-        "autocmd InsertLeave * call s:on_insert_leave()
-    augroup END
+function! s:checkPlug()
+	let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+
+	if !filereadable(vimplug_exists)
+	  if !executable("curl")
+	    echoerr "You have to install curl or first install vim-plug yourself!"
+	    execute "q!"
+	  endif
+	  echo "Installing Vim-Plug..."
+	  echo ""
+	  silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	  let g:not_finish_vimplug = "yes"
+
+	  autocmd VimEnter * PlugInstall
+	endif
 endfunction
 
-function! s:cmdlineComplete()
-    " set ignore file extension of wildmenu, won't list when using filename completion
-    set wildmenu
-    set wildignore+=*.a,*.o,.DS_Store,.git,.hg,.svn,*~,*.swp,*.tmp,*/.sass-cache/*,*.scssc
-    set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-    set shortmess+=c
-endfunction
+call s:checkPlug()
 
-call s:autoCompleteConfig()
-call s:cmdlineComplete()
-
-function! s:on_complete_done() abort
-    let item = get(v:, 'completed_item', {})
-    if type(item) == 4
-        echom get(item, 'menu')
-    endif
-endfunction
+" Required:
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'cohama/lexima.vim'
 
-function! s:tsConfig()
-    let g:nvim_typescript#javascript_support = 1
-    let g:nvim_typescript#vue_support = 1
-    let g:nvim_typescript#diagnostics_enable = 0
-    augroup tsAuto
-	autocmd!
-	autocmd BufEnter *.js,*.ts,*.tsx,*.jsx,*.vue call s:tsKeys()
-    augroup END
-endfunction
-call s:tsConfig()
-
-function! s:tsKeys()
-    no gd :TSDef<cr>
-    no gh :TSType<cr>
-endfunction
+call plug#end()

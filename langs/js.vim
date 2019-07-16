@@ -5,6 +5,7 @@
             "\ }
 " Plug 'jason0x43/vim-js-indent'
 
+Plug 'pangloss/vim-javascript'
 Plug 'Quramy/vim-js-pretty-template'
 Plug 'heavenshell/vim-jsdoc'
 
