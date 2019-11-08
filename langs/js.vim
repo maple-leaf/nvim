@@ -7,17 +7,19 @@
 
 Plug 'pangloss/vim-javascript'
 Plug 'Quramy/vim-js-pretty-template'
-Plug 'heavenshell/vim-jsdoc'
 
-function! s:jsDocConfig()
-    let g:jsdoc_input_descritions = 1
-    let g:jsdoc_allow_input_prompt = 1
-    let g:jsdoc_access_descriptions = 2
-    let g:jsdoc_underscore_private = 1
-    let g:jsdoc_param_description_separator = ' - '
-    let g:jsdoc_enable_es6 = 1
+" use doge instaed of jsdoc
+"Plug 'heavenshell/vim-jsdoc'
 
-    no <c-d> <esc>:JsDoc<cr>
-    ino <c-d> <esc>:JsDoc<cr>
-endfunction
-call s:jsDocConfig()
+"function! s:jsDocConfig()
+    "let g:jsdoc_input_descritions = 1
+    "let g:jsdoc_allow_input_prompt = 1
+    "let g:jsdoc_access_descriptions = 2
+    "let g:jsdoc_underscore_private = 1
+    "let g:jsdoc_param_description_separator = ' - '
+    "let g:jsdoc_enable_es6 = 1
+
+    "no <c-d> <esc>:JsDoc<cr>
+    "ino <c-d> <esc>:JsDoc<cr>
+"endfunction
+"call s:jsDocConfig()

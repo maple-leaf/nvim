@@ -41,7 +41,7 @@ call s:magitConfig()
 
 function! s:gitMessagerConfig()
     let g:git_messenger_no_default_mappings = v:true
-    let g:git_messenger_into_popup_after_show = v:false
+    let g:git_messenger_into_popup_after_show = v:true
     nmap <leader>gl <Plug>(git-messenger)
 endfunction
 call s:gitMessagerConfig()

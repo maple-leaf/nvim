@@ -46,9 +46,6 @@ function! s:deniteConfig()
     "no <leader>pf :Denite file/rec<cr>
 endfunction
 
-" easy to change surrounded symbol by 'cs' or delete by 'ds'
-Plug 'tpope/vim-surround'
-
 function! s:baseSetup()
     call s:deniteConfig()
 endfunction

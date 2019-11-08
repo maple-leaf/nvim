@@ -30,7 +30,7 @@ function! s:aleConfig()
         " let g:ale_fixers['javascript'] = ['eslint']
     " endif
 
-    let g:ale_lint_delay = 800
+    let g:ale_lint_delay = 200
     let g:ale_fix_on_save = 1
     let g:ale_open_list = 0 " show errors list when has
     " If you use Prettier config files, you must set g:ale_javascript_prettier_use_local_config to have ALE respect them:
