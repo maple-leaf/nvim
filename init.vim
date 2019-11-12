@@ -48,6 +48,7 @@ source $XDG_DATA_HOME/nvim/base/code-format.vim
 source $XDG_DATA_HOME/nvim/base/auto-complete-coc.vim
 source $XDG_DATA_HOME/nvim/base/snippet.vim
 source $XDG_DATA_HOME/nvim/base/task.vim
+source $XDG_DATA_HOME/nvim/base/layout.vim
 
 source $XDG_DATA_HOME/nvim/langs/js.vim
 source $XDG_DATA_HOME/nvim/langs/ts.vim
