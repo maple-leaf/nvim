@@ -12,10 +12,11 @@ Plug 'rhysd/git-messenger.vim'
 """"""""""""
 
 function! s:fugittiveConfig()
-    nmap <Leader>gs <Plug>GitGutterStageHunk
-    nmap <Leader>gr <Plug>GitGutterRevertHunk
-    nmap <Leader>gp <Plug>GitGutterPrevHunk
-    nmap <Leader>gn <Plug>GitGutterNextHunk
+    nmap <Leader>gs <Plug>(GitGutterStageHunk)
+    nmap <Leader>gr <Plug>(GitGutterUndoHunk)
+    nmap <Leader>gp <Plug>(GitGutterPrevHunk)
+    nmap <Leader>gn <Plug>(GitGutterNextHunk)
+    nmap <Leader>gv <Plug>(GitGutterPreviewHunk)
 endfunction
 call s:fugittiveConfig()
 

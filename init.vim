@@ -35,8 +35,9 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 source $XDG_DATA_HOME/nvim/base.vim
 source $XDG_DATA_HOME/nvim/base/file-explorer.vim
 source $XDG_DATA_HOME/nvim/base/appearance.vim
+source $XDG_DATA_HOME/nvim/base/editorconfig.vim
 source $XDG_DATA_HOME/nvim/base/more-powerful.vim
-source $XDG_DATA_HOME/nvim/base/searchAndReplace.vim
+"source $XDG_DATA_HOME/nvim/base/searchAndReplace.vim
 source $XDG_DATA_HOME/nvim/base/terminal.vim
 source $XDG_DATA_HOME/nvim/base/tags.vim
 source $XDG_DATA_HOME/nvim/base/git.vim
@@ -46,13 +47,14 @@ source $XDG_DATA_HOME/nvim/base/ale.vim
 source $XDG_DATA_HOME/nvim/base/code-format.vim
 "source $XDG_DATA_HOME/nvim/base/auto-complete.vim
 source $XDG_DATA_HOME/nvim/base/auto-complete-coc.vim
+" source $XDG_DATA_HOME/nvim/base/auto-complete-ncm2.vim
 source $XDG_DATA_HOME/nvim/base/snippet.vim
-source $XDG_DATA_HOME/nvim/base/task.vim
+"source $XDG_DATA_HOME/nvim/base/task.vim
 source $XDG_DATA_HOME/nvim/base/layout.vim
 
 source $XDG_DATA_HOME/nvim/langs/js.vim
 source $XDG_DATA_HOME/nvim/langs/ts.vim
-source $XDG_DATA_HOME/nvim/langs/vue.vim
+"source $XDG_DATA_HOME/nvim/langs/vue.vim
 source $XDG_DATA_HOME/nvim/langs/go.vim
 source $XDG_DATA_HOME/nvim/langs/yaml.vim
 source $XDG_DATA_HOME/nvim/langs/markdown.vim

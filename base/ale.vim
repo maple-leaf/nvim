@@ -3,7 +3,8 @@ Plug 'w0rp/ale'
 function! s:aleConfig()
     let g:ale_linters = {
                 \   'javascript': ['eslint'],
-                \   'typescript': ['tslint'],
+                \   'typescript': ['tsserver', 'eslint'],
+                \   'typescriptreact': ['tsserver', 'eslint'],
                 \   'vue': ['prettier', 'eslint'],
                 \   'elixir': ['mix'],
                 \   'html': [],
@@ -12,18 +13,16 @@ function! s:aleConfig()
     let g:ale_linter_aliases = {
                 \ 'vue': ['html', 'javascript', 'css']
                 \ }
-    " prettier dont work well as fixer, use autoformat instead
     let g:ale_fixers = {
-                \   'javascript': [
-                \       'eslint',
-                \   ],
-                \   'typescript': ['tslint'],
+                \   'javascript': ['eslint'],
+                \   'typescript': ['prettier', 'eslint'],
+                \   'typescriptreact': ['eslint'],
                 \   'vue': [
                 \       'eslint',
                 \   ],
                 \   'html': [
                 \   ],
-                \   'json': [],
+                \   'json': ['prettier']
                 \}
     " if filereadable('.vim-disable-prettier')
         " let g:ale_linters['javascript'] = ['eslint']
@@ -36,7 +35,7 @@ function! s:aleConfig()
     " If you use Prettier config files, you must set g:ale_javascript_prettier_use_local_config to have ALE respect them:
     let g:ale_javascript_prettier_use_local_config = 1
     " --parser parse5 -> support html format
-    let g:ale_javascript_prettier_options = "--parser parse5 --print-width 120 --ignore-path ~/dotfiles/.prettierignore"
+    " let g:ale_javascript_prettier_options = "--parser parse5 --print-width 120 --ignore-path ~/dotfiles/.prettierignore"
 
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)

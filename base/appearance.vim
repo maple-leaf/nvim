@@ -92,12 +92,13 @@ function! s:setup()
     " enable true color support on terminal
     set termguicolors
     set background=dark
-    color solarized8_dark
+    " color solarized8_dark
+    color Monokai
 
     let g:airline_section_z = airline#section#create(['windowswap', 'obsession', 'linenr', '/%L', g:airline_symbols.space.'%c'])
     " integrate with coc.nvim
-    let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-    let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+    " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+    " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 endfunction
 
 augroup appearance

@@ -52,6 +52,9 @@ set ttimeoutlen=100
 
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 
+set spell
+set spelllang=en
+
 
 " warn me when files change outside
 augroup improved_autoread

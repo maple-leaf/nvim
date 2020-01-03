@@ -1,7 +1,8 @@
+Plug 'tpope/vim-obsession'
 " Comment
 Plug 'scrooloose/nerdcommenter'
 
-function! s:comentConfig()
+function! s:commentConfig()
     " Add spaces after comment delimiters by default
     let g:NERDSpaceDelims = 1
 
@@ -17,6 +18,7 @@ function! s:comentConfig()
     " Enable NERDCommenterToggle to check all selected lines is commented or not 
     let g:NERDToggleCheckAllLines = 1
 endfunction
+call s:commentConfig()
 
 let g:deoplete#enable_at_startup = 1
 

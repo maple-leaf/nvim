@@ -1,5 +1,3 @@
-"Plug 'ncm2/ncm2'
-
 " For async completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/echodoc.vim'
