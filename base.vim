@@ -1,4 +1,5 @@
-Plug 'tpope/vim-obsession'
+" Start screen and session manager
+Plug 'mhinz/vim-startify'
 " Comment
 Plug 'scrooloose/nerdcommenter'
 
@@ -20,38 +21,9 @@ function! s:commentConfig()
 endfunction
 call s:commentConfig()
 
-let g:deoplete#enable_at_startup = 1
-
-" For Denite features
-Plug 'Shougo/denite.nvim'
-"Plug 'dunstontc/projectile.nvim'
-
-" Enable deoplete at startup
-function! s:deniteConfig()
-    call denite#custom#map(
-		\ 'insert',
-		\ '<Down>',
-		\ '<denite:move_to_next_line>',
-		\ 'noremap'
-		\)
-    call denite#custom#map(
-		\ 'insert',
-		\ '<Up>',
-		\ '<denite:move_to_previous_line>',
-		\ 'noremap'
-		\)
-
-    call denite#custom#var('file/rec', 'command',
-		\ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-
-    "no <leader>pp :Denite projectile<cr>
-    "no <leader>pf :Denite file/rec<cr>
+function! s:startifyConfig()
+    noremap ;ss :SSave 
+    noremap ;sl :SLoad  
+    noremap ;sc :SClose<cr>
 endfunction
-
-function! s:baseSetup()
-    call s:deniteConfig()
-endfunction
-augroup baseConfig
-    autocmd!
-    autocmd VimEnter * call s:baseSetup()
-augroup END
+call s:startifyConfig()

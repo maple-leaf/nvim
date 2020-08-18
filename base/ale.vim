@@ -2,9 +2,9 @@ Plug 'w0rp/ale'
 
 function! s:aleConfig()
     let g:ale_linters = {
-                \   'javascript': ['eslint'],
-                \   'typescript': ['tsserver', 'eslint'],
-                \   'typescriptreact': ['tsserver', 'eslint'],
+                \   'javascript': ['prettier', 'eslint'],
+                \   'typescript': ['prettier', 'tsserver', 'eslint'],
+                \   'typescriptreact': ['prettier', 'tsserver', 'eslint'],
                 \   'vue': ['prettier', 'eslint'],
                 \   'elixir': ['mix'],
                 \   'html': [],
@@ -14,9 +14,9 @@ function! s:aleConfig()
                 \ 'vue': ['html', 'javascript', 'css']
                 \ }
     let g:ale_fixers = {
-                \   'javascript': ['eslint'],
+                \   'javascript': ['prettier', 'eslint'],
                 \   'typescript': ['prettier', 'eslint'],
-                \   'typescriptreact': ['eslint'],
+                \   'typescriptreact': ['prettier', 'eslint'],
                 \   'vue': [
                 \       'eslint',
                 \   ],
@@ -36,10 +36,14 @@ function! s:aleConfig()
     let g:ale_javascript_prettier_use_local_config = 1
     " --parser parse5 -> support html format
     " let g:ale_javascript_prettier_options = "--parser parse5 --print-width 120 --ignore-path ~/dotfiles/.prettierignore"
+    let g:ale_exclude_highlights = []
 
     " Map movement through errors without wrapping.
     nmap <Leader>ep <Plug>(ale_previous)
     nmap <Leader>en <Plug>(ale_next)
     nmap <Leader>ef <Plug>(ale_fix)
+    nmap gd <Plug>(ale_go_to_definition)
+    nmap gr <Plug>(ale_find_references)
+    nmap gh <Plug>(ale_hover)
 endfunction
 call s:aleConfig()

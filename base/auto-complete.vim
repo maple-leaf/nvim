@@ -2,6 +2,11 @@
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/echodoc.vim'
 
+"""""""""""""
+"  sources  "
+"""""""""""""
+Plug 'Shougo/neco-vim'
+
 function! s:autoCompleteConfig()
     let g:deoplete#enable_at_startup = 1
 
@@ -9,9 +14,17 @@ function! s:autoCompleteConfig()
     "let g:echodoc#enable_at_startup = 1
     augroup autoComplete
         autocmd!
-        autocmd CompleteDone,CursorMovedI * call s:on_complete_done()
-		autocmd InsertLeave * call s:on_insert_leave()
+        autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
     augroup END
+
+    """""""""""""
+    "  echodoc  "
+    """""""""""""
+    let g:echodoc#enable_at_startup = 1
+    let g:echodoc#type = 'floating'
+    " To use a custom highlight for the float window,
+    " change Pmenu to your highlight group
+    highlight link EchoDocFloat Pmenu
 endfunction
 
 function! s:cmdlineComplete()
@@ -24,14 +37,3 @@ endfunction
 
 call s:autoCompleteConfig()
 call s:cmdlineComplete()
-
-function! s:on_complete_done() abort
-    let item = get(v:, 'completed_item', {})
-    if type(item) == 4
-		echo get(item, 'menu', '')
-    endif
-endfunction
-
-function! s:on_insert_leave() abort
-	echo ''
-endfunction

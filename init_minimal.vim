@@ -27,6 +27,5 @@ call s:checkPlug()
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'cohama/lexima.vim'
 
 call plug#end()

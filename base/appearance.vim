@@ -4,11 +4,12 @@ Plug 'flazz/vim-colorschemes'
 function! AirlineConfig()
     "let g:airline_theme = 'powerlineish'
     let g:airline#extensions#syntastic#enabled = 0
-    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#branch#enabled = 0
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tagbar#enabled = 0
-    let g:airline#extensions#gutentags#enabled = 1
+    let g:airline#extensions#gutentags#enabled = 0
     let g:airline_skip_empty_sections = 1
+    let g:airline_detect_spell=0
 
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
@@ -92,8 +93,8 @@ function! s:setup()
     " enable true color support on terminal
     set termguicolors
     set background=dark
-    " color solarized8_dark
-    color Monokai
+    color solarized8_dark
+    " color Monokai
 
     let g:airline_section_z = airline#section#create(['windowswap', 'obsession', 'linenr', '/%L', g:airline_symbols.space.'%c'])
     " integrate with coc.nvim

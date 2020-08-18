@@ -72,6 +72,8 @@ endfunction
 
 " File Explorer
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'vifm/vifm.vim'
+Plug 'kevinhwang91/rnvimr'
 
 function! s:defxConfig()
     no <leader>ee :Defx -split=vertical -winwidth=50 -direction=topleft<cr>
@@ -136,13 +138,40 @@ function! s:defx_key_mapping() abort
                 \ defx#do_action('change_vim_cwd')
 endfunction
 
+function! s:cocExplorerConfig()
+    no <leader>ee :CocCommand explorer --preset floating<cr>
+endfunction
+
+function! s:rangerConfig()
+    " Make Ranger replace Netrw and be the file explorer
+    let g:rnvimr_enable_ex = 1
+
+    " Make Ranger to be hidden after picking a file
+    let g:rnvimr_enable_picker = 1
+
+    " Disable a border for floating window
+    let g:rnvimr_draw_border = 0
+
+    " Hide the files included in gitignore
+    let g:rnvimr_hide_gitignore = 0
+
+    " Change the border's color
+    let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+
+    " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+    let g:rnvimr_enable_bw = 1
+    no <leader>ee :RnvimrToggle<cr>
+endfunction
+
 function! s:setup()
     call s:fzfConfig()
-    call s:defxConfig()
+    " call s:cocExplorerConfig()
+    " call s:defxConfig()
+    call s:rangerConfig()
 endfunction
 
 augroup file-explorer
     autocmd!
-    autocmd FileType defx call s:defx_key_mapping()
+    " autocmd FileType defx call s:defx_key_mapping()
     autocmd VimEnter * call s:setup()
 augroup end

@@ -6,6 +6,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 Plug 'rhysd/git-messenger.vim'
+Plug 'junegunn/gv.vim'
 
 """"""""""""
 "  Config  "

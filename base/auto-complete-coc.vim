@@ -8,16 +8,17 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " diagnostics
-nnoremap <silent> <leader>ecl  :<C-u>CocList diagnostics<cr>
-nmap <silent> <leader>ecn <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>ecp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>ecf <Plug>(coc-fix-current)
+nnoremap <silent> <leader>el  :<C-u>CocList diagnostics<cr>
+nmap <silent> <leader>en <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>ep <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>ef <Plug>(coc-fix-current)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gh :call CocAction('doHover')<cr>
 
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

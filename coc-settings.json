@@ -12,5 +12,8 @@
                 }
             }
         }
-    }
+    },
+    "tsserver.npm": "/usr/local/bin/npm",
+    "tsserver.trace.server": "verbose",
+    "tsserver.log": "verbose"
 }

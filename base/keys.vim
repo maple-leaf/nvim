@@ -137,3 +137,9 @@ vno <Leader>] "*p
 
 " terminal
 tnoremap <Esc> <C-\><C-n>
+
+
+if exists('g:vscode')
+    nmap j gj
+    nmap k gk
+endif
