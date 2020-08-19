@@ -22,6 +22,9 @@ endfunction
 call s:commentConfig()
 
 function! s:startifyConfig()
+    let g:startify_change_to_dir = 0
+    let g:startify_change_to_vcs_root = 0
+
     noremap ;ss :SSave 
     noremap ;sl :SLoad  
     noremap ;sc :SClose<cr>

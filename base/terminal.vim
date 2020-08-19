@@ -1,17 +1,36 @@
-Plug 'kassio/neoterm'
-Plug 'BurningEther/nvimux'
+Plug 'voldikss/vim-floaterm'
 
-function! s:neoTermConfig()
-    let g:neoterm_automap_keys = ',tt'
-
-    let g:neoterm_keep_term_open = 0
-    let g:neoterm_default_mod = 'vertical'
+function! s:toggleOrCreateTerm(bang, name) abort
+    if a:bang
+        call floaterm#toggle(a:bang, a:name)
+    endif
+    if !empty(a:name)
+        let bufnr = floaterm#terminal#get_bufnr(a:name)
+        if bufnr == -1
+            execute('FloatermNew --name='.a:name)
+        else
+            call floaterm#toggle(a:bang, a:name)
+        endif
+    else
+        call floaterm#util#show_msg('Name is empty')
+    endif
 endfunction
 
-function! s:nvimuxConfig()
-    let g:nvimux_quickterm_provider = 'neoterm#new'
-    no <Leader>' :NvimuxToggleTerm<cr>
+command! -nargs=? -bang -complete=customlist,floaterm#cmdline#floaterm_names
+                          \ FloatermToggleOrCreate call s:toggleOrCreateTerm(<bang>0, <q-args>)
+
+function! s:floatermConfig() abort
+    let g:floaterm_keymap_new = '<Leader>tc'
+    let g:floaterm_keymap_prev = '<Leader>tp'
+    let g:floaterm_keymap_next = '<Leader>tn'
+    let g:floaterm_keymap_hide = '<Leader>th'
+    let g:floaterm_keymap_show = '<Leader>ts'
+    let g:floaterm_keymap_kill = '<Leader>tk'
+    let g:floaterm_keymap_toggle = '<Leader>tt'
+
+    nnoremap <leader>tb :FloatermToggleOrCreate bulidTerm<cr>
+
+    autocmd User Startified setlocal buflisted
 endfunction
 
-call s:neoTermConfig()
-call s:nvimuxConfig()
+call s:floatermConfig()
