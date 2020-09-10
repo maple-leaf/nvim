@@ -29,8 +29,15 @@ function! s:floatermConfig() abort
     let g:floaterm_keymap_toggle = '<Leader>tt'
 
     nnoremap <leader>tb :FloatermToggleOrCreate bulidTerm<cr>
+    nnoremap <leader>tg :FloatermToggleOrCreate GitTerm<cr>
 
     autocmd User Startified setlocal buflisted
 endfunction
 
 call s:floatermConfig()
+
+tnoremap <C-l> <C-\><C-n>:call ClearTerminal()<cr>
+
+function! ClearTerminal()
+    echo 'Neovim terminal have bug on clearing terminal'
+endfunction

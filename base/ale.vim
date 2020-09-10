@@ -42,8 +42,10 @@ function! s:aleConfig()
     nmap <Leader>ep <Plug>(ale_previous)
     nmap <Leader>en <Plug>(ale_next)
     nmap <Leader>ef <Plug>(ale_fix)
-    nmap gd <Plug>(ale_go_to_definition)
-    nmap gr <Plug>(ale_find_references)
-    nmap gh <Plug>(ale_hover)
+
+    let g:ale_disable_lsp = 1
+    " nmap gd <Plug>(ale_go_to_definition)
+    " nmap gr <Plug>(ale_find_references)
+    " nmap gh <Plug>(ale_hover)
 endfunction
 call s:aleConfig()

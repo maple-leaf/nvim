@@ -27,3 +27,6 @@ Plug 'cohama/lexima.vim'
 
 " (Do)cumentation (Ge)nerator
 Plug 'kkoomen/vim-doge'
+
+" string converstaion
+Plug 'tpope/vim-abolish'

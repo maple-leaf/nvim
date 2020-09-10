@@ -60,7 +60,26 @@ function! s:fzfConfig()
     endfunction
     command! SearchCWord call s:blines_with_cword()
 
-    no <leader>pf :GitFiles --cached --others --exclude-standard<cr>
+    function! FzfTagsCurrentWord()
+        let l:word = expand('<cword>')
+        let l:list = taglist(l:word)
+        if len(l:list) == 1
+            execute ':tag ' . l:word
+        else
+            call fzf#vim#tags("'".l:word)
+        endif
+    endfunction
+
+    noremap <c-]> :call FzfTagsCurrentWord()<cr>
+
+    function! s:openGitFilesAndPrintHelp()
+        execute 'GitFiles --cached --others --exclude-standard'
+        let helpMessage = "'exact-match ^prefix-exact-match suffix-exact-match$ !inverse-exact-match !^inverse-prefix-exact-match !inverse-suffix-exact-match$"
+        echo helpMessage
+    endfunction
+    command! OpenGitFilesAndPrintHelp call s:openGitFilesAndPrintHelp()
+
+    no <leader>pf :OpenGitFilesAndPrintHelp<cr>
     no <leader>ff :FZF<cr>
     no <leader><cr> :Buffer<cr>
     no <leader>oo :BTags<cr>
@@ -155,11 +174,12 @@ function! s:rangerConfig()
     " Hide the files included in gitignore
     let g:rnvimr_hide_gitignore = 0
 
-    " Change the border's color
-    let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
-
     " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
     let g:rnvimr_enable_bw = 1
+
+    " Link CursorLine into RnvimrNormal highlight in the Floating window
+    highlight link RnvimrNormal CursorLine
+
     no <leader>ee :RnvimrToggle<cr>
 endfunction
 
