@@ -35,25 +35,6 @@ function! s:fzfConfig()
     " use f instead of a to avoid conflict with move cursor to beginning
     let $FZF_DEFAULT_OPTS = '--bind ctrl-f:toggle-all'
 
-    " use raw ag, should provide pattern when use
-    " Augmenting Ag command using fzf#vim#with_preview function
-    "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
-    "     * For syntax-highlighting, Ruby and any of the following tools are required:
-    "       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
-    "       - CodeRay: http://coderay.rubychan.de/
-    "       - Rouge: https://github.com/jneen/rouge
-    "
-    "   :RAg  - Start fzf with preview window at right
-    "   :RAg! - Start fzf in fullscreen and display the preview window above
-    "command! -bang -nargs=* Rag
-                "\ call fzf#vim#ag_raw(<q-args>, 
-                "\                 <bang>0 ? fzf#vim#with_preview('up:60%')
-                "\                         : fzf#vim#with_preview('right:50%', '', '--color fg:-1,bg:-1,hl:33'),
-                "\                 <bang>0)
-    " escaped string with double quote and backslash -> :Rag "\(\'text\'\)"
-    command! -bang -nargs=* Rag
-                \ call fzf#vim#ag_raw(<q-args>, {'options': s:fzf_preview_options})
-
     function! s:blines_with_cword()
         " let g:word = execute('echo ')
         call fzf#vim#buffer_lines(expand("<cword>"))
@@ -85,81 +66,12 @@ function! s:fzfConfig()
     no <leader>oo :BTags<cr>
     no <leader>og :Tags<cr>
     " give cword as default argument for Rag
-    no <leader>/ :Rag <C-R><C-W>
+    no <leader>/ :Rg <C-R><C-W>
     no <leader>s :SearchCWord<cr>
 endfunction
 
 " File Explorer
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'vifm/vifm.vim'
 Plug 'kevinhwang91/rnvimr'
-
-function! s:defxConfig()
-    no <leader>ee :Defx -split=vertical -winwidth=50 -direction=topleft<cr>
-    no <leader>ec :Defx `expand('%:p:h')` -search=`expand('%:p') -split=vertical -winwidth=50 -direction=topleft<cr>
-endfunction
-
-function! s:defx_key_mapping() abort
-    " Define mappings
-    nnoremap <silent><buffer><expr> <CR>
-                \ defx#is_directory() ? defx#do_action('open') :
-                \ defx#do_action('multi', ['drop', 'quit'])
-    nnoremap <silent><buffer><expr> c
-                \ defx#do_action('copy')
-    nnoremap <silent><buffer><expr> m
-                \ defx#do_action('move')
-    nnoremap <silent><buffer><expr> p
-                \ defx#do_action('paste')
-    nnoremap <silent><buffer><expr> l
-                \ defx#is_directory() ? defx#do_action('open') :
-                \ defx#do_action('multi', ['drop', 'quit'])
-    nnoremap <silent><buffer><expr> E
-                \ defx#do_action('open', 'vsplit')
-    nnoremap <silent><buffer><expr> P
-                \ defx#do_action('open', 'pedit')
-    nnoremap <silent><buffer><expr> K
-                \ defx#do_action('new_directory')
-    nnoremap <silent><buffer><expr> N
-                \ defx#do_action('new_file')
-    nnoremap <silent><buffer><expr> d
-                \ defx#do_action('remove')
-    nnoremap <silent><buffer><expr> r
-                \ defx#do_action('rename')
-    nnoremap <silent><buffer><expr> !
-                \ defx#do_action('execute_command')
-    nnoremap <silent><buffer><expr> x
-                \ defx#do_action('execute_system')
-    nnoremap <silent><buffer><expr> yy
-                \ defx#do_action('yank_path')
-    nnoremap <silent><buffer><expr> .
-                \ defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> ;
-                \ defx#do_action('repeat')
-    nnoremap <silent><buffer><expr> h
-                \ defx#do_action('cd', ['..'])
-    nnoremap <silent><buffer><expr> ~
-                \ defx#do_action('cd')
-    nnoremap <silent><buffer><expr> q
-                \ defx#do_action('quit')
-    nnoremap <silent><buffer><expr> <Space>
-                \ defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> *
-                \ defx#do_action('toggle_select_all')
-    nnoremap <silent><buffer><expr> j
-                \ line('.') == line('$') ? 'gg' : 'j'
-    nnoremap <silent><buffer><expr> k
-                \ line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent><buffer><expr> <C-l>
-                \ defx#do_action('redraw')
-    nnoremap <silent><buffer><expr> <C-g>
-                \ defx#do_action('print')
-    nnoremap <silent><buffer><expr> cd
-                \ defx#do_action('change_vim_cwd')
-endfunction
-
-function! s:cocExplorerConfig()
-    no <leader>ee :CocCommand explorer --preset floating<cr>
-endfunction
 
 function! s:rangerConfig()
     " Make Ranger replace Netrw and be the file explorer
@@ -185,13 +97,10 @@ endfunction
 
 function! s:setup()
     call s:fzfConfig()
-    " call s:cocExplorerConfig()
-    " call s:defxConfig()
     call s:rangerConfig()
 endfunction
 
 augroup file-explorer
     autocmd!
-    " autocmd FileType defx call s:defx_key_mapping()
     autocmd VimEnter * call s:setup()
 augroup end

@@ -2,8 +2,8 @@
 
 Plug 'terryma/vim-multiple-cursors'
 
-" draw flowchart easily
-Plug 'gyim/vim-boxdraw'
+" plantUML preview in vim with text graphic
+Plug 'scrooloose/vim-slumlord'
 
 " easy to change surrounded symbol by 'cs' or delete by 'ds'
 Plug 'tpope/vim-surround'
@@ -30,3 +30,6 @@ Plug 'kkoomen/vim-doge'
 
 " string converstaion
 Plug 'tpope/vim-abolish'
+
+" debug IDE
+Plug 'puremourning/vimspector'
