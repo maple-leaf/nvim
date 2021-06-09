@@ -1,4 +1,6 @@
 {
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": ["rust"],
     "eslint.autoFixOnSave": true,
     "vetur.experimental.templateInterpolationService": false,
     "languageserver": {
