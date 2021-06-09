@@ -1,5 +1,7 @@
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-git']
+
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
