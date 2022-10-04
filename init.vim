@@ -11,7 +11,12 @@ source $XDG_DATA_HOME/nvim/helper.vim
 source $XDG_DATA_HOME/nvim/setting.vim
 
 function! s:checkPlug()
-    let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+    " TODO: fix os difference
+    if MySys() == "mac"
+        let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+    else
+        let vimplug_exists=expand('"${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim')
+    endif
 
     if !filereadable(vimplug_exists)
       if !executable("curl")
@@ -27,7 +32,7 @@ function! s:checkPlug()
     endif
 endfunction
 
-call s:checkPlug()
+" call s:checkPlug()
 
 " Required
 call plug#begin(expand('~/.config/nvim/plugged'))
@@ -42,7 +47,7 @@ source $XDG_DATA_HOME/nvim/base/more-powerful.vim
 " source $XDG_DATA_HOME/nvim/base/searchAndReplace.vim
 
 source $XDG_DATA_HOME/nvim/base/terminal.vim
-source $XDG_DATA_HOME/nvim/base/tags.vim
+" source $XDG_DATA_HOME/nvim/base/tags.vim
 source $XDG_DATA_HOME/nvim/base/git.vim
 source $XDG_DATA_HOME/nvim/base/test.vim
 source $XDG_DATA_HOME/nvim/base/code-format.vim

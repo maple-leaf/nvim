@@ -1,6 +1,8 @@
 Plug 'plasticboy/vim-markdown'
+if MySys() == 'mac'
 " live preview with auto mac window management
 Plug 'junegunn/vim-xmark', { 'do': 'make' }
+endif
 " live preview with auto scroll
 " use https://github.com/ashfinal/awesome-hammerspoon to manage window layout
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
