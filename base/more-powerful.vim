@@ -32,4 +32,4 @@ Plug 'kkoomen/vim-doge'
 Plug 'tpope/vim-abolish'
 
 " debug IDE
-Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
