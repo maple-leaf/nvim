@@ -30,3 +30,11 @@ function! s:startifyConfig()
     noremap ;sc :SClose<cr>
 endfunction
 call s:startifyConfig()
+
+" the time treesitter is installed by the :PlugUpdate command of Vim-Plug the :TSUpdate command is not yet available
+" Restart and run TSUpdate command manually
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
+" lua helper function
+Plug 'nvim-lua/plenary.nvim'

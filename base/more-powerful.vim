@@ -33,3 +33,5 @@ Plug 'tpope/vim-abolish'
 
 " debug IDE
 Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
